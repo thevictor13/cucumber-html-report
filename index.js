@@ -85,6 +85,7 @@ function checkOptions(options) {
     directory.mkdirpSync(options.dest);
     console.log(options.dest + ' directory created.');
   }
+  return true;
 }
 
 function loadTemplate(template) {

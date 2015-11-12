@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+	<style type="text/css">
+		body {
+			font-family: "Arial";
+			margin: 0 10% 0 10%;
+			background-color: rgb(150,150,250);
+		}
+		a, a:hover, a:visited {
+			color: #fff;
+			text-decoration: none;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+		th {
+			text-align: left;
+			background-color: #eee;
+			color: #999;
+			text-transform: capitalize;
+		}
+		th, td {
+			padding: 5px 10px;
+			border-bottom: #999 1px solid;
+		}
+		tr.passed td {
+			background-color: rgb(150,250,150);
+		}
+		tr.failed td {
+			background-color: rgb(250,150,150);
+		}
+		td.status {
+			text-transform: capitalize;
+		}
+		h1 {
+			margin: 0;
+			padding: 20px 10px;
+			color: #fff;
+		}
+		h2 {
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+		h3 {
+			margin: 15px 0 5px 0;
+		}
+		div.footer {
+			background-color: #262b2c;
+			color: #aeaeae;
+			text-align: center;
+			padding: 20px;
+		}
+		img {
+			max-width: 100%;
+		}
+		.filename {
+			margin: 0 0 10px 0;
+			color: #999;
+		}
+		span.tags {
+			float:right;
+			font-size: 15px;
+			color: #888;
+		}
+		p.story {
+			font-size: 20px;
+			color: #888;
+			font-style: italic;
+		}
+		div.report {
+			padding: 10px;
+			background: #fff;
+			padding-bottom: 30px;
+			border-bottom: #999 3px solid;
+		}
+		img {
+			margin-top: 10px;
+		}
+	</style>
+	<title>Cucumber Report</title>
+</head>
+<body>
+	<h1>Cucumber Report</h1>
+	{{#reports}}
+	<div class="report">
+		<h2>{{keyword}}: {{name}} <span class="tags">{{tags}}</span></h2>
+		<p class="filename">{{uri}}</p>
+		<p class="story">{{description}}</p>
+		{{#elements}}
+			<h3>{{keyword}}: {{name}}</h3>
+			<table>
+				<tr>
+					<th style="width: 100px;">Line</th>
+					<th style="width: 100px;">Condition</th>
+					<th>Step</th>
+					<th style="width: 100px;">Status</th>
+				</tr>
+			{{#steps}}
+			<tr class="{{result.status}}">
+				<td>{{line}}</td>
+				<td>{{keyword}}</td>
+				<td>{{name}}</td>
+				<td class="status">{{result.status}}</td>
+			</tr>
+			{{/steps}}
+			</table>
+			{{#image}}{{imageName}}{{/image}}
+		{{/elements}}
+	</div>
+	{{/reports}}
+
+	<div class="footer">
+		<p><a href="https://github.com/leinonen/grunt-cucumber-html-report">Cucumber HTML Report Generator</a> by <a href="http://leinonen.se">Peter Leinonen</a> 2015.</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+[
+  {
+    "id": "Ping",
+    "name": "Ping",
+    "description": "As a user\r\nI must be able to ping the application\r\nto ensure all is set up properly",
+    "line": 2,
+    "keyword": "Feature",
+    "tags": [
+      {
+        "name": "@ping",
+        "line": 1
+      }
+    ],
+    "uri": "ping.feature",
+    "elements": [
+      {
+        "name": "Successful ping",
+        "id": "Ping;successful-ping",
+        "line": 7,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before ",
+            "hidden": true,
+            "result": {
+              "duration": 5927652289,
+              "status": "passed"
+            },
+            "match": {}
+          },
+          {
+            "name": "I ping",
+            "line": 8,
+            "keyword": "When ",
+            "result": {
+              "duration": 238664314,
+              "status": "passed"
+            },
+            "match": {}
+          },
+          {
+            "name": "I should get a pong",
+            "line": 9,
+            "keyword": "Then ",
+            "result": {
+              "duration": 1073883228,
+              "status": "passed"
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "duration": 42631,
+              "status": "passed"
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "duration": 1003062744,
+              "status": "passed"
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  }
+]

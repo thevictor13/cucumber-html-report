@@ -1,0 +1,19 @@
+{
+  "name": "cucumber-html-report",
+  "version": "0.1.0",
+  "description": "Convert cucumber reports from json to HTML using Mustache templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cucumber",
+    "json2html",
+    "report"
+  ],
+  "author": "Peter Leinonen",
+  "license": "MIT",
+  "dependencies": {
+    "mustache": "^2.2.0"
+  }
+}

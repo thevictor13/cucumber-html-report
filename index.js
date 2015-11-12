@@ -11,7 +11,9 @@ module.exports = CucumberHtmlReport;
 
 CucumberHtmlReport.prototype.createReport = function() {
   var options = this.options;
-  checkOptions(options);
+  if (!checkOptions(options)) {
+    return false;
+  }
 
   var reports = loadReport(this.options.source);
 
@@ -34,6 +36,7 @@ CucumberHtmlReport.prototype.createReport = function() {
 
   saveHTML(options.dest, html);
   console.log('Report created successfully!');
+  return true;
 };
 
 function loadReport(fileName) {

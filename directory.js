@@ -13,7 +13,7 @@ function mkdirSync(path) {
 }
 
 exports.mkdirpSync = function(dirpath) {
-  var parts = dirpath.split(path.sep);
+  var parts = dirpath.split('/'); // path.sep
   for( var i = 1; i <= parts.length; i++ ) {
     mkdirSync( path.join.apply(null, parts.slice(0, i)) );
   }

@@ -29,7 +29,11 @@ CucumberHtmlReport.prototype.createReport = function() {
     }
   });
 
-  var html = Mustache.to_html(loadTemplate('default'), {
+  var templateFile = path.join(__dirname, 'templates', 'default.html');
+  if (options.template) {
+    templateFile = options.template
+  }
+  var html = Mustache.to_html(loadTemplate(templateFile), {
     reports: reports,
     image: mustacheImageHandler
   });
@@ -80,16 +84,23 @@ function checkOptions(options) {
     return false;
   }
 
+  // Make sure we have template file!
+  if (options.template && !fs.existsSync(options.template)){
+    console.error('Template file "'+ options.template + '" does not exist! Aborting');
+    return false;
+  }
+
   // Create output directory if not exists
   if (!fs.existsSync(options.dest)) {
     directory.mkdirpSync(options.dest);
     console.log(options.dest + ' directory created.');
   }
+
   return true;
 }
 
-function loadTemplate(template) {
-  return fs.readFileSync(path.join(__dirname, 'templates', template + '.html')).toString();
+function loadTemplate(templateFile) {
+  return fs.readFileSync(templateFile).toString();
 }
 
 function createFileName(name) {

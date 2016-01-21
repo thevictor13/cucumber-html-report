@@ -38,7 +38,7 @@ CucumberHtmlReport.prototype.createReport = function() {
     image: mustacheImageHandler
   });
 
-  saveHTML(options.dest, html);
+  saveHTML(options.dest, options.name, html);
   console.log('Report created successfully!');
   return true;
 };
@@ -47,8 +47,8 @@ function loadReport(fileName) {
   return JSON.parse(fs.readFileSync(fileName, 'utf-8').toString());
 }
 
-function saveHTML(targetDirectory, html) {
-  fs.writeFileSync(path.join(targetDirectory, 'index.html'), html);
+function saveHTML(targetDirectory, reportName, html) {
+  fs.writeFileSync(path.join(targetDirectory, reportName || 'index.html'), html);
 }
 
 function saveEmbeddedImages(destPath, element, steps) {

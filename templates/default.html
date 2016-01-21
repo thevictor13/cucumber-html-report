@@ -67,6 +67,12 @@
 			font-size: 15px;
 			color: #888;
 		}
+		span.scenario-tag {
+			float: right;
+			font-size: 15px;
+			color: #888;
+			margin-left: 0.5em;
+		}
 		p.story {
 			font-size: 20px;
 			color: #888;
@@ -95,7 +101,12 @@
 		<p class="filename">{{uri}}</p>
 		<p class="story">{{description}}</p>
 		{{#elements}}
-			<h3>{{keyword}}: {{name}}</h3>
+			<h3>
+				{{keyword}}: {{name}}
+				{{#tags}}
+				<span class="scenario-tag">{{name}}</span>
+				{{/tags}}
+			</h3>
 			<table>
 				<tr>
 					<th style="width: 100px;">Line</th>

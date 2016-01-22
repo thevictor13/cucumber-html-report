@@ -10,7 +10,8 @@ var CucumberHtmlReport = require('cucumber-html-report');
 
 var report = new CucumberHtmlReport({
   source: './cucumber_report.json', // source json
-  dest: './reports' // target directory (will create if not exists)
+  dest: './reports', // target directory (will create if not exists)
+  name: 'report.html' // report file name (will be index.html if not exists)
 });
 
 report.createReport();

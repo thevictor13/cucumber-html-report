@@ -21,4 +21,4 @@ report.createReport();
 ```
 
 # Author
-Written by Peter Leinonen 2015.
+Written by Peter Leinonen 2016.

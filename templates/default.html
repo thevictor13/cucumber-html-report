@@ -121,7 +121,7 @@
 				<td>{{name}}</td>
 				<td class="status">{{result.status}}</td>
 			</tr>
-			<tr class="hidden">
+			<tr class="hidden {{result.status}}">
 				<td colspan="4"><pre>{{result.error_message}}</pre></td>
 			</tr>
 			{{/steps}}

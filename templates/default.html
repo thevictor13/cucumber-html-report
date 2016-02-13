@@ -121,7 +121,7 @@
 				<td>{{name}}</td>
 				<td class="status">{{result.status}}</td>
 			</tr>
-			<tr class="hidden">
+			<tr class="hidden {{result.status}}">
 				<td colspan="4"><pre>{{result.error_message}}</pre></td>
 			</tr>
 			{{/steps}}
@@ -132,7 +132,7 @@
 	{{/reports}}
 
 	<div class="footer">
-		<p><a href="https://github.com/leinonen/grunt-cucumber-html-report">Cucumber HTML Report Generator</a> by <a href="http://leinonen.se">Peter Leinonen</a> 2015.</p>
+		<p><a href="https://github.com/leinonen/cucumber-html-report">Cucumber HTML Report Generator</a> by <a href="http://leinonen.se">Peter Leinonen</a> 2016.</p>
 	</div>
 	<script type="text/javascript">
 		(function () {

@@ -180,15 +180,30 @@
 
 			var failed = document.getElementsByClassName('failed');
 			for (var i = 0; i < failed.length; i += 1) {
-				failed[i].addEventListener('click', (function (i) {
-					return function () {
-						if (failed[i].nextElementSibling.classList.contains('hidden')) {
-							failed[i].nextElementSibling.classList.remove('hidden');
-						} else {
-							failed[i].nextElementSibling.classList.add('hidden');
+				if(failed[i].className === 'failed') {
+					failed[i].addEventListener('click', (function (i) {
+						return function () {
+							if (failed[i].nextElementSibling.classList.contains('hidden')) {
+								failed[i].nextElementSibling.classList.remove('hidden');
+							} else {
+								failed[i].nextElementSibling.classList.add('hidden');
+							}
 						}
-					}
-				})(i));
+					})(i));
+				}
+				else if(failed[i].classList.contains('hidden')) {
+					console.log('elif here');
+					failed[i].addEventListener('click', (function (i) {
+						return function () {
+							console.log('im here now');
+							if (failed[i].classList.contains('hidden')) {
+								failed[i].classList.remove('hidden');
+							} else {
+								failed[i].classList.add('hidden');
+							}
+						}
+					})(i));
+				}
 			}
 		})(window);
 	</script>

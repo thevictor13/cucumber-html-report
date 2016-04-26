@@ -37,6 +37,8 @@ CucumberHtmlReport.prototype.createReport = function() {
     templateFile = options.template
   }
   var html = Mustache.to_html(loadTemplate(templateFile), {
+    title: options.title || 'Cucumber Report',
+    component: options.component || '',
     reports: reports,
     summary: Summary.calculateSummary(reports),
     image: mustacheImageHandler

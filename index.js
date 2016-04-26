@@ -1,7 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 var Mustache = require('mustache');
-var directory = require('./directory');
+var Directory = require('./directory');
+var Summary = require('./summary');
 
 var CucumberHtmlReport = function(options) {
   this.options = options || {};
@@ -17,14 +18,16 @@ CucumberHtmlReport.prototype.createReport = function() {
 
   var reports = loadReport(this.options.source);
 
+  function isValidStep(step) {
+    return step.name !== undefined;
+  }
+
   reports.forEach(function(report) {
     report.tags = parseTags(report);
     if (report.elements) {
       report.elements.forEach(function(element) {
         saveEmbeddedImages(options.dest, element, element.steps);
-        element.steps = element.steps.filter(function(step) {
-          return step.name !== undefined;
-        });
+        element.steps = element.steps.filter(isValidStep);
       });
     }
   });
@@ -35,6 +38,7 @@ CucumberHtmlReport.prototype.createReport = function() {
   }
   var html = Mustache.to_html(loadTemplate(templateFile), {
     reports: reports,
+    summary: Summary.calculateSummary(reports),
     image: mustacheImageHandler
   });
 
@@ -92,7 +96,7 @@ function checkOptions(options) {
 
   // Create output directory if not exists
   if (!fs.existsSync(options.dest)) {
-    directory.mkdirpSync(options.dest);
+    Directory.mkdirpSync(options.dest);
     console.log(options.dest + ' directory created.');
   }
 

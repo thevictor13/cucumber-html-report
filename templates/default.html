@@ -79,12 +79,19 @@
 			color: #888;
 			font-style: italic;
 		}
-		div.report {
+		div.report, div.summary {
 			padding: 10px;
 			background: #fff;
 			padding-bottom: 30px;
 			border-bottom: #999 3px solid;
 		}
+		div.summary {
+			margin-bottom: 10px;
+		}
+		td.result {
+			text-align: right;
+		}
+
 		img {
 			margin-top: 10px;
 		}
@@ -96,6 +103,33 @@
 </head>
 <body>
 	<h1>Cucumber Report</h1>
+
+	<div class="summary">
+		<h2>Summary</h2>
+		<table>
+			<tr>
+				<td>Total tests cases</td>
+				<td class="result">{{summary.total}}</td>
+			</tr>
+			<tr>
+				<td>Executed test cases</td>
+				<td class="result">{{summary.totalExecuted}}</td>
+			</tr>
+			<tr>
+				<td>Passed</td>
+				<td class="result">{{summary.totalPassed}}</td>
+			</tr>
+			<tr>
+				<td>Failed</td>
+				<td class="result">{{summary.totalFailed}}</td>
+			</tr>
+			<tr>
+				<td>Status</td>
+				<td class="result">{{summary.status}}</td>
+			</tr>
+		</table>
+	</div>
+
 	{{#reports}}
 	<div class="report">
 		<h2>{{keyword}}: {{name}} <span class="tags">{{tags}}</span></h2>

@@ -8,7 +8,8 @@ function sumFeatures(features, elementCallback) {
   // Features summary
   return sum(features.map(function(feature) {
     // Elements summary for each feature
-    return sum(feature.elements.map(elementCallback));
+    var elems = feature.elements || [];
+    return sum(elems.map(elementCallback));
   }));
 }
 
@@ -33,6 +34,7 @@ function stepFailed(step) {
 }
 
 exports.calculateSummary = function(features) {
+  console.log(features);
   var totalPassed = stepSum(features, stepPassed);
   var totalFailed = stepSum(features, stepFailed);
 

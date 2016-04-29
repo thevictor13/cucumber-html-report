@@ -1,8 +1,8 @@
 var fs = require('fs');
 var path = require('path');
 var Mustache = require('mustache');
-var Directory = require('./directory');
-var Summary = require('./summary');
+var Directory = require('./lib/directory');
+var Summary = require('./lib/summary');
 
 var CucumberHtmlReport = function(options) {
   this.options = options || {};

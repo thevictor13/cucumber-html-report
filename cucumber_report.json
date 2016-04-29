@@ -1,21 +1,35 @@
 [
   {
-    "id": "Ping",
-    "name": "Ping",
-    "description": "As a user\r\nI must be able to ping the application\r\nto ensure all is set up properly",
+    "id": "Full-Screen-on-Map",
+    "name": "Full Screen on Map",
+    "description": "It should be possible to view map in full screen and to resume to \"before full screen\" map view.",
     "line": 2,
     "keyword": "Feature",
     "tags": [
       {
-        "name": "@ping",
+        "name": "@fullscreen",
         "line": 1
       }
     ],
-    "uri": "ping.feature",
+    "uri": "C:\\code\\project\\component-tests\\e2e\\features\\fullscreen.feature"
+  },
+  {
+    "id": "Login",
+    "name": "Login",
+    "description": "As an XXX User\r\nI want to be able to login into YYY\r\nSo that I can securely access to my data and functionality",
+    "line": 2,
+    "keyword": "Feature",
+    "tags": [
+      {
+        "name": "@login",
+        "line": 1
+      }
+    ],
+    "uri": "C:\\code\\project\\component-tests\\e2e\\features\\login.feature",
     "elements": [
       {
-        "name": "Successful ping",
-        "id": "Ping;successful-ping",
+        "name": "Simple login",
+        "id": "Login;simple-login",
         "line": 7,
         "keyword": "Scenario",
         "description": "",
@@ -25,51 +39,506 @@
             "keyword": "Before ",
             "hidden": true,
             "result": {
-              "duration": 5927652289,
-              "status": "passed"
+              "status": "passed",
+              "duration": 3537582
             },
-            "match": {}
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:14"
+            }
           },
           {
-            "name": "I ping",
+            "name": "I was not logged in",
             "line": 8,
-            "keyword": "When ",
+            "keyword": "Given ",
             "result": {
-              "duration": 238664314,
-              "status": "passed"
+              "status": "passed",
+              "duration": 2322994
             },
-            "match": {}
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:23"
+            }
           },
           {
-            "name": "I should get a pong",
+            "name": "I am on the home page",
             "line": 9,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 5009140
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\navbar.steps.js:7"
+            }
+          },
+          {
+            "name": "I am redirected to login page",
+            "line": 10,
             "keyword": "Then ",
             "result": {
-              "duration": 1073883228,
-              "status": "passed"
+              "status": "passed",
+              "duration": 2838145963
             },
-            "match": {}
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:73"
+            }
           },
           {
             "keyword": "After ",
             "hidden": true,
             "result": {
-              "duration": 42631,
-              "status": "passed"
+              "status": "passed",
+              "duration": 398284
             },
-            "match": {}
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:31"
+            }
           },
           {
             "keyword": "After ",
             "hidden": true,
             "result": {
-              "duration": 1003062744,
-              "status": "passed"
+              "status": "passed",
+              "duration": 1000951302
             },
-            "match": {}
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:22"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Single sign on login",
+        "id": "Login;single-sign-on-login",
+        "line": 12,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 639070
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:14"
+            }
+          },
+          {
+            "name": "I was logged in",
+            "line": 13,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 2927722
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:8"
+            }
+          },
+          {
+            "name": "I am on the home page",
+            "line": 14,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 1684713
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\navbar.steps.js:7"
+            }
+          },
+          {
+            "name": "I stay on the home page",
+            "line": 15,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 3474653318
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:79"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 163419
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:31"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1000100657
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:22"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Login failure caused by server error",
+        "id": "Login;login-failure-caused-by-server-error",
+        "line": 17,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 935513
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:14"
+            }
+          },
+          {
+            "name": "Authentication server is down",
+            "line": 18,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 2197074
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:34"
+            }
+          },
+          {
+            "name": "I am on the home page",
+            "line": 19,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 2149312
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\navbar.steps.js:7"
+            }
+          },
+          {
+            "name": "I am redirected to login page",
+            "line": 20,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 2269512258
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:73"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 129077
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:31"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1001036170
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:22"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Login failure caused by empty token",
+        "id": "Login;login-failure-caused-by-empty-token",
+        "line": 22,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 640649
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:14"
+            }
+          },
+          {
+            "name": "I get empty token from authorization server",
+            "line": 23,
+            "keyword": "When ",
+            "result": {
+              "status": "passed",
+              "duration": 1310508
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:69"
+            }
+          },
+          {
+            "name": "I am redirected to error page",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1064156070
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:83"
+            }
+          },
+          {
+            "name": "Error message 'Failed to process authentication' is displayed",
+            "line": 25,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 971479876
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:87"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 117235
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:31"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1000573939
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:22"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Authorization failure caused by server error",
+        "id": "Login;authorization-failure-caused-by-server-error",
+        "line": 27,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 944987
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:14"
+            }
+          },
+          {
+            "name": "I was logged in but authorization server is down",
+            "line": 28,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 1437217
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:41"
+            }
+          },
+          {
+            "name": "I am on the home page",
+            "line": 29,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 1130116
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\navbar.steps.js:7"
+            }
+          },
+          {
+            "name": "I am redirected to error page",
+            "line": 30,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1417936748
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:83"
+            }
+          },
+          {
+            "name": "Error message 'Failed to process authentication' is displayed",
+            "line": 31,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 735658721
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:87"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 182760
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:31"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1001186957
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:22"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Authorization failure caused by missing permission",
+        "id": "Login;authorization-failure-caused-by-missing-permission",
+        "line": 33,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1103669
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:14"
+            }
+          },
+          {
+            "name": "I was logged in but I have no permission for YYY",
+            "line": 34,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 2211284
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:54"
+            }
+          },
+          {
+            "name": "I am on the home page",
+            "line": 35,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 1261956
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\navbar.steps.js:7"
+            }
+          },
+          {
+            "name": "I am redirected to error page",
+            "line": 36,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1292013125
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:83"
+            }
+          },
+          {
+            "name": "Error message 'Access is denied' is displayed",
+            "line": 37,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 888969984
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\steps\\login.steps.js:87"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 116840
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:31"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1001237877
+            },
+            "match": {
+              "location": "C:\\code\\project\\component-tests\\e2e\\support\\hooks.js:22"
+            }
           }
         ]
       }
     ]
+  },
+  {
+    "id": "Navigation-bar",
+    "name": "Navigation bar",
+    "description": "As an XXX User\r\nI want to be able to use the navigation bar\r\nSo that I can easily navigate between pages",
+    "line": 2,
+    "keyword": "Feature",
+    "tags": [
+      {
+        "name": "@navbar",
+        "line": 1
+      }
+    ],
+    "uri": "C:\\code\\project\\component-tests\\e2e\\features\\navbar.feature"
   }
 ]

@@ -14,6 +14,10 @@ describe('Summary module', function() {
     expect(sum.totalFeatures).to.equal(3);
   });
 
+  it('should return total number of scenarios', function() {
+    expect(sum.totalScenarios).to.equal(6);
+  });
+
   it('should return number of passed scenarios', function() {
     expect(sum.scenariosPassed).to.equal(6);
   });

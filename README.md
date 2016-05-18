@@ -1,3 +1,6 @@
+![alt text](https://travis-ci.org/leinonen/cucumber-html-report.svg?branch=master "Build status")
+
+
 # cucumber-html-report
 
 Create HTML reports from cucumber json report files. Uses mustache to transform json to HTML.

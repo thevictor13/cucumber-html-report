@@ -110,7 +110,7 @@ function loadTemplate(templateFile) {
 }
 
 function createFileName(name) {
-  return name.split(' ').join('_').toLowerCase();
+  return name.split('\W+').join('_').toLowerCase();
 }
 
 function writeImage(fileName, data) {

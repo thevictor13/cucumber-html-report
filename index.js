@@ -4,6 +4,8 @@ var Mustache = require('mustache');
 var Directory = require('./lib/directory');
 var Summary = require('./lib/summary');
 
+var defaultTemplate = path.join(__dirname, 'templates', 'default.html');
+
 var CucumberHtmlReport = function(options) {
   this.options = options || {};
 };
@@ -16,12 +18,32 @@ CucumberHtmlReport.prototype.createReport = function() {
     return false;
   }
 
-  var reports = loadReport(this.options.source);
+  var reports = parseReport(options, loadReport(this.options.source));
+  var templateFile = options.template || defaultTemplate;
+  var opts = {
+    title: options.title || 'Cucumber Report',
+    component: options.component || '',
+    reports: reports,
+    summary: Summary.calculateSummary(reports),
+    image: mustacheImageHandler
+  };
 
-  function isValidStep(step) {
-    return step.name !== undefined;
-  }
+  var html = Mustache.to_html(loadTemplate(templateFile), opts);
+  saveHTML(options.dest, options.name, html);
+  console.log('Report created successfully!');
 
+  return true;
+};
+
+function isValidStep(step) {
+  return step.name !== undefined;
+}
+
+function loadReport(fileName) {
+  return JSON.parse(fs.readFileSync(fileName, 'utf-8').toString());
+}
+
+function parseReport(options, reports) {
   reports.forEach(function(report) {
     report.tags = parseTags(report);
     if (report.elements) {
@@ -31,26 +53,7 @@ CucumberHtmlReport.prototype.createReport = function() {
       });
     }
   });
-
-  var templateFile = path.join(__dirname, 'templates', 'default.html');
-  if (options.template) {
-    templateFile = options.template
-  }
-  var html = Mustache.to_html(loadTemplate(templateFile), {
-    title: options.title || 'Cucumber Report',
-    component: options.component || '',
-    reports: reports,
-    summary: Summary.calculateSummary(reports),
-    image: mustacheImageHandler
-  });
-
-  saveHTML(options.dest, options.name, html);
-  console.log('Report created successfully!');
-  return true;
-};
-
-function loadReport(fileName) {
-  return JSON.parse(fs.readFileSync(fileName, 'utf-8').toString());
+  return reports;
 }
 
 function saveHTML(targetDirectory, reportName, html) {
@@ -64,8 +67,7 @@ function saveEmbeddedImages(destPath, element, steps) {
         if (embedding.mime_type === 'image/png') {
           var imageName = createFileName(element.name + ':' + element.line) + '.png';
           var fileName = path.join(destPath, imageName);
-          // Save imageName on element so we use it in HTML
-          element.imageName = imageName;
+          element.imageName = imageName; // Save imageName on element so we use it in HTML
           writeImage(fileName, embedding.data);
         }
       });

@@ -6,7 +6,8 @@
 		body {
 			font-family: Arial, sans-serif;
 			margin: 0 10% 0 10%;
-			background-color: rgb(150,150,250);
+			background-color: #fff;
+			color: #282828;
 		}
 		a, a:hover, a:visited {
 			color: #fff;
@@ -24,7 +25,7 @@
 		}
 		th, td {
 			padding: 5px 10px;
-			border-bottom: #999 1px solid;
+			border-bottom: rgba(162, 162, 162, 0.16) 1px solid;
 		}
 		tr.failed {
 			cursor: pointer;
@@ -40,26 +41,32 @@
 		}
 		h1 {
 			margin: 0;
-			padding: 20px 10px;
-			color: #fff;
+			padding: 20px 10px 10px 10px;
+			color: #282828;
 		}
 		h2 {
 			margin-top: 5px;
 			margin-bottom: 5px;
 		}
 		h2.component {
-			color: #fff;
+			color: #282828;
 			padding: 0 10px 10px 10px;
 		}
 		h3 {
-			margin: 15px 0 5px 0;
+			margin: 25px 0 10px 0;
 		}
-		div.footer {
-			background-color: #262b2c;
-			color: #aeaeae;
+
+		.footer {
+			color: #3C494C;
 			text-align: center;
 			padding: 20px;
+			float: left;
+			width: 100%;
 		}
+		.footer a, footer a:visited {
+			color: #3C494C;
+		}
+
 		img {
 			max-width: 100%;
 		}
@@ -82,15 +89,24 @@
 			font-size: 20px;
 			color: #888;
 			font-style: italic;
+			padding-left: 20px;
 		}
 		div.report, div.summary {
+			width: 100%;
+			float: left;
 			padding: 10px;
 			background: #fff;
-			padding-bottom: 30px;
-			border-bottom: #999 3px solid;
+			padding-bottom: 10px;
 		}
 		div.summary {
-			margin-bottom: 10px;
+			margin-bottom: 0px;
+			padding: 0;
+			width: 25%;
+			padding-top: 20px;
+		}
+		div.summary table {
+			width: 100%;
+			float: left;
 		}
 		td.result {
 			text-align: right;
@@ -102,37 +118,50 @@
 		.hidden {
 			display: none;
 		}
+		.header {
+			width: 100%;
+			float: left;
+		}
+		.titlewrapper {
+			width: 75%;
+			float: left;
+		}
 	</style>
 	<title>{{title}}</title>
 </head>
 <body>
-	<h1>{{title}}</h1>
-	<h2 class="component">{{component}}</h2>
 
-	<div class="summary">
-		<h2>Summary</h2>
-		<table>
-			<tr>
-				<td>Number of features</td>
-				<td class="result">{{summary.totalFeatures}}</td>
-			</tr>
-			<tr>
-				<td>Number of scenarios</td>
-				<td class="result">{{summary.totalScenarios}}</td>
-			</tr>
-			<tr>
-				<td>Passed scenarios</td>
-				<td class="result">{{summary.scenariosPassed}}</td>
-			</tr>
-			<tr>
-				<td>Failed scenarios</td>
-				<td class="result">{{summary.scenariosFailed}}</td>
-			</tr>
-			<tr>
-				<td>Status</td>
-				<td class="result">{{summary.status}}</td>
-			</tr>
-		</table>
+	<div class="header">
+		<div class="titlewrapper">
+			<h1>{{title}}</h1>
+			<h2 class="component">{{component}}</h2>
+		</div>
+
+		<div class="summary">
+			<h2>Summary</h2>
+			<table>
+				<tr>
+					<td>Number of features</td>
+					<td class="result">{{summary.totalFeatures}}</td>
+				</tr>
+				<tr>
+					<td>Number of scenarios</td>
+					<td class="result">{{summary.totalScenarios}}</td>
+				</tr>
+				<tr>
+					<td>Passed scenarios</td>
+					<td class="result">{{summary.scenariosPassed}}</td>
+				</tr>
+				<tr>
+					<td>Failed scenarios</td>
+					<td class="result">{{summary.scenariosFailed}}</td>
+				</tr>
+				<tr>
+					<td>Status</td>
+					<td class="result">{{summary.status}}</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 
 	{{#reports}}
@@ -149,16 +178,16 @@
 			</h3>
 			<table>
 				<tr>
-					<th style="width: 100px;">Line</th>
 					<th style="width: 100px;">Condition</th>
 					<th>Step</th>
+					<th style="width: 100px;">Line</th>
 					<th style="width: 100px;">Status</th>
 				</tr>
 			{{#steps}}
 			<tr class="{{result.status}}">
-				<td>{{line}}</td>
 				<td>{{keyword}}</td>
 				<td>{{name}}</td>
+				<td>{{line}}</td>
 				<td class="status">{{result.status}}</td>
 			</tr>
 			<tr class="hidden {{result.status}}">

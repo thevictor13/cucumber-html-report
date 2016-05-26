@@ -19,14 +19,14 @@ describe('Summary module', function() {
   });
 
   it('should return number of passed scenarios', function() {
-    expect(sum.scenariosPassed).to.equal(0);
+    expect(sum.scenariosPassed).to.equal(2);
   });
 
   it('should return number of failed scenarios', function() {
-    expect(sum.scenariosFailed).to.equal(2);
+    expect(sum.scenariosFailed).to.equal(0);
   });
 
   it('should return status of the report', function() {
-    expect(sum.status).to.equal('NOK');
+    expect(sum.status).to.equal('OK');
   });
 });

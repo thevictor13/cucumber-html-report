@@ -1,6 +1,5 @@
 ![alt text](https://travis-ci.org/leinonen/cucumber-html-report.svg?branch=master "Build status")
 
-
 # cucumber-html-report
 
 Create HTML reports from cucumber json report files. Uses mustache to transform json to HTML.
@@ -19,7 +18,7 @@ var options = {
   dest:      './reports',          // target directory (will create if not exists)
   name:      'report.html',        // report file name (will be index.html if not exists)
   template:  'mytemplate.html',    // your custom mustache template (uses default if not specified)
-  title:     'My Cucumber Report', // Title for default template. (default is Cucumber Report)
+  title:     'Cucumber Report',    // Title for default template. (default is Cucumber Report)
   component: 'My Component',       // Subtitle for default template. (default is empty)
 };
 
@@ -28,4 +27,4 @@ report.createReport();
 ```
 
 # Author
-Written by Peter Leinonen 2016.
+Written by Peter Leinonen 2016, with help of contributors. Thanks!

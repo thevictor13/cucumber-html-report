@@ -26,5 +26,12 @@ var report = new Report(options);
 report.createReport();
 ```
 
+## Contribute
+You can contribute to this project by submitting a PR.
+
+### TODO
+* Refactor code into smaller modules
+* Write all tests using cucumber! :)
+
 # Author
 Written by Peter Leinonen 2016, with help of contributors. Thanks!

@@ -61,6 +61,7 @@ function saveHTML(targetDirectory, reportName, html) {
 }
 
 function saveEmbeddedImages(destPath, element, steps) {
+  steps = steps || [];
   steps.forEach(function(step) {
     if (step.embeddings) {
       step.embeddings.forEach(function(embedding) {
@@ -101,7 +102,7 @@ function checkOptions(options) {
   // Create output directory if not exists
   if (!fs.existsSync(options.dest)) {
     Directory.mkdirpSync(options.dest);
-    console.log(options.dest + ' directory created.');
+    console.log('Created directory: %s', options.dest);
   }
 
   return true;

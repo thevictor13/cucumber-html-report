@@ -20,8 +20,9 @@
             "line": 7,
             "keyword": "Given ",
             "result": {
-              "status": "passed",
-              "duration": 1960274
+              "status": "failed",
+              "duration": 2468398,
+              "error_message": "SyntaxError: Unexpected end of input\n    at Object.parse (native)\n    at World.<anonymous> (/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:15:21)\n    at doNTCallback0 (node.js:407:9)\n    at process._tickCallback (node.js:336:13)\n    at Function.Module.runMain (module.js:477:11)"
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:13"
@@ -32,11 +33,10 @@
             "line": 8,
             "keyword": "And ",
             "result": {
-              "status": "passed",
-              "duration": 291606
+              "status": "skipped"
             },
             "match": {
-              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:19"
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:20"
             }
           },
           {
@@ -44,11 +44,10 @@
             "line": 9,
             "keyword": "And ",
             "result": {
-              "status": "passed",
-              "duration": 663174
+              "status": "skipped"
             },
             "match": {
-              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:24"
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:25"
             }
           },
           {
@@ -56,11 +55,10 @@
             "line": 10,
             "keyword": "When ",
             "result": {
-              "status": "passed",
-              "duration": 5422722
+              "status": "skipped"
             },
             "match": {
-              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:35"
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:36"
             }
           },
           {
@@ -68,11 +66,10 @@
             "line": 11,
             "keyword": "Then ",
             "result": {
-              "status": "passed",
-              "duration": 130660
+              "status": "skipped"
             },
             "match": {
-              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:40"
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:41"
             }
           }
         ]
@@ -90,8 +87,9 @@
             "line": 14,
             "keyword": "Given ",
             "result": {
-              "status": "passed",
-              "duration": 161073
+              "status": "failed",
+              "duration": 308879,
+              "error_message": "SyntaxError: Unexpected end of input\n    at Object.parse (native)\n    at World.<anonymous> (/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:15:21)\n    at doNTCallback0 (node.js:407:9)\n    at process._tickCallback (node.js:336:13)\n    at Function.Module.runMain (module.js:477:11)"
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:13"
@@ -102,11 +100,10 @@
             "line": 15,
             "keyword": "And ",
             "result": {
-              "status": "passed",
-              "duration": 57112
+              "status": "skipped"
             },
             "match": {
-              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:19"
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:20"
             }
           },
           {
@@ -114,11 +111,10 @@
             "line": 16,
             "keyword": "And ",
             "result": {
-              "status": "passed",
-              "duration": 118814
+              "status": "skipped"
             },
             "match": {
-              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:29"
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:30"
             }
           },
           {
@@ -126,11 +122,10 @@
             "line": 17,
             "keyword": "When ",
             "result": {
-              "status": "passed",
-              "duration": 2383820
+              "status": "skipped"
             },
             "match": {
-              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:35"
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:36"
             }
           },
           {
@@ -138,11 +133,10 @@
             "line": 18,
             "keyword": "Then ",
             "result": {
-              "status": "passed",
-              "duration": 143709
+              "status": "skipped"
             },
             "match": {
-              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:40"
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:41"
             }
           }
         ]

@@ -20,7 +20,7 @@
     "unit": "./node_modules/.bin/mocha --reporter spec",
     "cucumber": "./node_modules/.bin/cucumber.js features",
     "report": "./node_modules/.bin/cucumber.js features -f json:cucumber_report.json",
-    "test": "npm run unit && npm run cucumber"
+    "test": "npm run cucumber"
   },
   "keywords": [
     "cucumber",
@@ -34,7 +34,6 @@
   "devDependencies": {
     "sinon": "^1.17.4",
     "chai": "^3.5.0",
-    "mocha": "^2.4.5",
     "cucumber": "^0.10.3"
   }
 }

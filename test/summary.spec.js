@@ -15,11 +15,11 @@ describe('Summary module', function() {
   });
 
   it('should return total number of scenarios', function() {
-    expect(sum.totalScenarios).to.equal(2);
+    expect(sum.totalScenarios).to.equal(4);
   });
 
   it('should return number of passed scenarios', function() {
-    expect(sum.scenariosPassed).to.equal(2);
+    expect(sum.scenariosPassed).to.equal(4);
   });
 
   it('should return number of failed scenarios', function() {

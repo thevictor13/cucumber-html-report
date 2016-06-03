@@ -43,8 +43,14 @@ function loadReport(fileName) {
   return JSON.parse(fs.readFileSync(fileName, 'utf-8').toString());
 }
 
+function getStatus(feature) {
+  var result = Summary.getFetureResult(feature);
+  return result.failedScenarios === 0 ? 'passed': 'failed';
+}
+
 function parseReport(options, reports) {
   reports.forEach(function(report) {
+    report.status = getStatus(report);
     report.tags = parseTags(report);
     if (report.elements) {
       report.elements.forEach(function(element) {

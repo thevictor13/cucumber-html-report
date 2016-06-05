@@ -1,4 +1,4 @@
-Feature: Report
+Feature: Report Generator
   As a cucumber user
   I want to generate HTML reports from cucumber JSON report files
   So that I can get a better overview of my specifications

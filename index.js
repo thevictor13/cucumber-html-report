@@ -45,10 +45,10 @@ function loadCucumberReport(fileName) {
 
 function parseFeatures(options, features) {
   return features
-    .map(getStatus)
+    .map(getFeatureStatus)
     .map(parseTags)
     .map(function(feature) {
-      return saveEmbeddings(feature, options);
+      return processScenarios(feature, options);
     });
 }
 
@@ -91,10 +91,13 @@ function writeImage(fileName, data) {
   console.log('Wrote %s', fileName);
 }
 
-function getStatus(feature) {
-  var result = Summary.getFetureResult(feature);
-  feature.status = result.failedScenarios === 0 ? 'passed': 'failed';
+function getFeatureStatus(feature) {
+  feature.status = Summary.getFeatureStatus(feature);
   return feature;
+}
+
+function getScenarioStatus(scenario) {
+  return Summary.getScenarioStatus(scenario);
 }
 
 function parseTags(feature) {
@@ -108,11 +111,13 @@ function parseTags(feature) {
   return feature;
 }
 
-function saveEmbeddings(feature, options) {
-  if (feature.elements) {
-    feature.elements.forEach(function(element) {
-      saveEmbeddedImages(options.dest, element, element.steps);
-      element.steps = element.steps.filter(isValidStep);
+function processScenarios(feature, options) {
+  var scenarios = feature.elements;
+  if (scenarios) {
+    scenarios.forEach(function(scenario) {
+      scenario.status = getScenarioStatus(scenario);
+      saveEmbeddedImages(options.dest, scenario, scenario.steps);
+      scenario.steps = scenario.steps.filter(isValidStep);
     });
   }
   return feature;

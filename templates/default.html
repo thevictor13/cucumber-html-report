@@ -47,17 +47,10 @@
       border-bottom: rgba(162, 162, 162, 0.16) 1px solid;
     }
 
-    tr.failed {
-      cursor: pointer;
-    }
+    tr.failed { cursor: pointer; }
 
-    tr.passed td {
-      background-color: rgb(150, 250, 150);
-    }
-
-    tr.failed td {
-      background-color: rgb(250, 150, 150);
-    }
+    tr.passed td { background-color: rgb(150, 250, 150); }
+    tr.failed td { background-color: rgb(250, 150, 150); }
 
     td.status {
       text-transform: capitalize;
@@ -79,12 +72,11 @@
       padding: 0 10px 10px 10px;
     }
 
-    h3 {
-      margin: 25px 0 10px 0;
-    }
+    h3 { margin: 25px 0 10px 0; }
 
     img {
       max-width: 100%;
+      margin-top: 10px;
     }
 
     .filename {
@@ -120,17 +112,9 @@
       padding-bottom: 10px;
     }
 
-    td.result {
-      text-align: right;
-    }
+    td.result { text-align: right; }
 
-    img {
-      margin-top: 10px;
-    }
-
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
     .header {
       width: 100%;
@@ -147,55 +131,34 @@
 
     .summary li,
     .feature-list li,
-    .scenario-list li {
-      padding: 10px;
-    }
+    .scenario-list li { padding: 10px; }
 
-    .scenario-list li a {
-      color: #999;
-    }
+    .scenario-list li a { color: #999; }
 
-    .summary li {
-      padding: 5px 10px;
-    }
+    .summary li { padding: 5px 10px; }
 
     .feature-list li {
       border-top: rgba(162, 162, 162, 0.16) 1px solid;
       border-bottom: rgba(162, 162, 162, 0.16) 1px solid;
     }
 
-    .scenario-list li {
-      border: none;
-    }
+    .scenario-list li { border: none; }
 
-    .scenario-list {
-      padding: 10px 0;
-    }
+    .scenario-list { padding: 10px 0; }
 
     .summary li,
-    .feature-list li {
-      font-weight: bold;
-    }
+    .feature-list li { font-weight: bold; }
 
-    .scenario-list li {
-      font-weight: normal;
-    }
+    .scenario-list li { font-weight: normal; }
 
-    .feature-list li.passed {
-      border-left: 5px solid rgb(150, 250, 150);;
-    }
+    .feature-list > li.passed { border-left: 5px solid rgb(150, 250, 150); }
+    .feature-list > li.failed { border-left: 5px solid rgb(250, 150, 150); }
 
-    .feature-list li.failed {
-      border-left: 5px solid rgb(250, 150, 150);;
-    }
+    .scenario-list > li.passed a { color: #999; }
+    .scenario-list > li.failed a { color: rgb(250, 150, 150); }
 
-    .summary span.OK {
-      color: rgb(150, 250, 150);
-    }
-
-    .summary span.NOK {
-      color: rgb(250, 150, 150);
-    }
+    .summary span.OK  { color: rgb(150, 250, 150); }
+    .summary span.NOK { color: rgb(250, 150, 150); }
 
     .footer {
       color: #3C494C;
@@ -205,9 +168,7 @@
       width: 100%;
     }
 
-    .footer a, footer a:visited {
-      color: #3C494C;
-    }
+    .footer a, footer a:visited { color: #3C494C; }
   </style>
   <title>{{title}}</title>
 </head>
@@ -234,7 +195,7 @@
       <a href="#F_{{id}}">{{name}}</a>
       <ul class="scenario-list">
         {{#elements}}
-        <li><a href="#S_{{id}}">{{name}}</a></li>
+        <li class="{{status}}"><a href="#S_{{id}}">{{name}}</a></li>
         {{/elements}}
       </ul>
     </li>

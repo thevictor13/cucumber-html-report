@@ -20,7 +20,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 3869333
+              "duration": 3681838
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:14"
@@ -32,7 +32,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 678391
+              "duration": 650868
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:25"
@@ -44,7 +44,7 @@
             "keyword": "And ",
             "result": {
               "status": "passed",
-              "duration": 95741
+              "duration": 92310
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:31"
@@ -56,7 +56,7 @@
             "keyword": "And ",
             "result": {
               "status": "passed",
-              "duration": 659531
+              "duration": 642746
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:36"
@@ -68,7 +68,7 @@
             "keyword": "When ",
             "result": {
               "status": "passed",
-              "duration": 4206983
+              "duration": 5477845
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:52"
@@ -80,7 +80,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 124756
+              "duration": 128329
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:57"
@@ -91,7 +91,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 253506
+              "duration": 254919
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:21"
@@ -112,7 +112,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 340825
+              "duration": 345820
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:14"
@@ -124,7 +124,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 124878
+              "duration": 124734
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:25"
@@ -136,7 +136,7 @@
             "keyword": "And ",
             "result": {
               "status": "passed",
-              "duration": 52020
+              "duration": 53628
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:31"
@@ -148,7 +148,7 @@
             "keyword": "And ",
             "result": {
               "status": "passed",
-              "duration": 116480
+              "duration": 118044
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:46"
@@ -160,7 +160,7 @@
             "keyword": "When ",
             "result": {
               "status": "passed",
-              "duration": 1710854
+              "duration": 3883266
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:52"
@@ -172,7 +172,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 69755
+              "duration": 187104
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:57"
@@ -183,7 +183,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 72711
+              "duration": 164851
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:21"
@@ -204,7 +204,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 330065
+              "duration": 274582
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:14"
@@ -216,7 +216,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 351714
+              "duration": 83787
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:63"
@@ -228,7 +228,7 @@
             "keyword": "When ",
             "result": {
               "status": "passed",
-              "duration": 946414
+              "duration": 935207
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:52"
@@ -240,7 +240,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 93896
+              "duration": 91727
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:68"
@@ -251,7 +251,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 62577
+              "duration": 63554
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:21"
@@ -272,7 +272,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 258744
+              "duration": 211338
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:14"
@@ -284,7 +284,7 @@
             "keyword": "Given ",
             "result": {
               "status": "passed",
-              "duration": 142051
+              "duration": 127487
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:25"
@@ -296,7 +296,7 @@
             "keyword": "And ",
             "result": {
               "status": "passed",
-              "duration": 85635
+              "duration": 322476
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:41"
@@ -308,7 +308,7 @@
             "keyword": "When ",
             "result": {
               "status": "passed",
-              "duration": 439869
+              "duration": 456700
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:52"
@@ -320,7 +320,7 @@
             "keyword": "Then ",
             "result": {
               "status": "passed",
-              "duration": 75244
+              "duration": 62052
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:68"
@@ -331,7 +331,133 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 69492
+              "duration": 60168
+            },
+            "match": {
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:21"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Report-Summary",
+    "name": "Report Summary",
+    "description": "",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "/home/leinonen/code/cucumber-html-report/features/summary.feature",
+    "elements": [
+      {
+        "name": "Calculate summary for a report",
+        "id": "Report-Summary;calculate-summary-for-a-report",
+        "line": 3,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 224234
+            },
+            "match": {
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:14"
+            }
+          },
+          {
+            "name": "a valid JSON file",
+            "line": 4,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 247438
+            },
+            "match": {
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/summary.steps.js:8"
+            }
+          },
+          {
+            "name": "I calculate the summary",
+            "line": 5,
+            "keyword": "When ",
+            "result": {
+              "status": "passed",
+              "duration": 110462
+            },
+            "match": {
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/summary.steps.js:13"
+            }
+          },
+          {
+            "name": "it should return number of features",
+            "line": 6,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 114226
+            },
+            "match": {
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/summary.steps.js:18"
+            }
+          },
+          {
+            "name": "it should return number of scenarios",
+            "line": 7,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 124925
+            },
+            "match": {
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/summary.steps.js:22"
+            }
+          },
+          {
+            "name": "it should return number of passed scenarios",
+            "line": 8,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 92213
+            },
+            "match": {
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/summary.steps.js:27"
+            }
+          },
+          {
+            "name": "it should return number of failed scenarios",
+            "line": 9,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 93787
+            },
+            "match": {
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/summary.steps.js:32"
+            }
+          },
+          {
+            "name": "it should return the status",
+            "line": 10,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 99777
+            },
+            "match": {
+              "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/summary.steps.js:37"
+            }
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 70895
             },
             "match": {
               "location": "/home/leinonen/code/cucumber-html-report/features/step_definitions/report.steps.js:21"

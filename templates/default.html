@@ -229,7 +229,7 @@
   </ul>
 
   <ul class="feature-list">
-    {{#reports}}
+    {{#features}}
     <li class="{{status}}">
       <a href="#F_{{id}}">{{name}}</a>
       <ul class="scenario-list">
@@ -238,12 +238,12 @@
         {{/elements}}
       </ul>
     </li>
-    {{/reports}}
+    {{/features}}
   </ul>
 </div>
 
 <div class="report-container">
-  {{#reports}}
+  {{#features}}
   <div class="report" id="F_{{id}}">
     <h2>{{keyword}}: {{name}} <span class="tags">{{tags}}</span></h2>
 
@@ -281,7 +281,7 @@
     {{#image}}{{imageName}}{{/image}}
     {{/elements}}
   </div>
-  {{/reports}}
+  {{/features}}
 </div>
 
 <div class="footer">

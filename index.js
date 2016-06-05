@@ -1,8 +1,9 @@
-var fs = require('fs');
-var path = require('path');
-var Mustache = require('mustache');
-var Directory = require('./lib/directory');
-var Summary = require('./lib/summary');
+var
+  fs = require('fs'),
+  path = require('path'),
+  Mustache = require('mustache'),
+  Directory = require('./lib/directory'),
+  Summary = require('./lib/summary');
 
 var defaultTemplate = path.join(__dirname, 'templates', 'default.html');
 
@@ -18,17 +19,18 @@ CucumberHtmlReport.prototype.createReport = function() {
     return false;
   }
 
-  var reports = parseReport(options, loadReport(this.options.source));
+  var features = parseFeatures(options, loadCucumberReport(this.options.source));
   var templateFile = options.template || defaultTemplate;
-  var opts = {
+  var template = loadTemplate(templateFile);
+  var mustacheOptions = {
     title: options.title || 'Cucumber Report',
     component: options.component || '',
-    reports: reports,
-    summary: Summary.calculateSummary(reports),
+    features: features,
+    summary: Summary.calculateSummary(features),
     image: mustacheImageHandler
   };
 
-  var html = Mustache.to_html(loadTemplate(templateFile), opts);
+  var html = Mustache.to_html(template, mustacheOptions);
   saveHTML(options.dest, options.name, html);
   console.log('Report created successfully!');
 
@@ -36,60 +38,20 @@ CucumberHtmlReport.prototype.createReport = function() {
 };
 
 function isValidStep(step) {
-  return step.name !== undefined;
+  return true; //step.name !== undefined;
 }
 
-function loadReport(fileName) {
+function loadCucumberReport(fileName) {
   return JSON.parse(fs.readFileSync(fileName, 'utf-8').toString());
 }
 
-function getStatus(feature) {
-  var result = Summary.getFetureResult(feature);
-  return result.failedScenarios === 0 ? 'passed': 'failed';
-}
-
-function parseReport(options, reports) {
-  reports.forEach(function(report) {
-    report.status = getStatus(report);
-    report.tags = parseTags(report);
-    if (report.elements) {
-      report.elements.forEach(function(element) {
-        saveEmbeddedImages(options.dest, element, element.steps);
-        element.steps = element.steps.filter(isValidStep);
-      });
-    }
-  });
-  return reports;
-}
-
-function saveHTML(targetDirectory, reportName, html) {
-  fs.writeFileSync(path.join(targetDirectory, reportName || 'index.html'), html);
-}
-
-function saveEmbeddedImages(destPath, element, steps) {
-  steps = steps || [];
-  steps.forEach(function(step) {
-    if (step.embeddings) {
-      step.embeddings.forEach(function(embedding) {
-        if (embedding.mime_type === 'image/png') {
-          var imageName = createFileName(element.name + ':' + element.line) + '.png';
-          var fileName = path.join(destPath, imageName);
-          element.imageName = imageName; // Save imageName on element so we use it in HTML
-          writeImage(fileName, embedding.data);
-        }
-      });
-    }
-  });
-}
-
-function parseTags(report) {
-  if (report.tags !== undefined) {
-    return report.tags.map(function(tag) {
-      return tag.name;
-    }).join(', ');
-  } else {
-    return '';
-  }
+function parseFeatures(options, features) {
+  return features
+    .map(getStatus)
+    .map(parseTags)
+    .map(function(feature) {
+      return saveEmbeddings(feature, options);
+    });
 }
 
 function checkOptions(options) {
@@ -122,9 +84,56 @@ function createFileName(name) {
   return name.split('\W+').join('_').toLowerCase();
 }
 
+function saveHTML(targetDirectory, reportName, html) {
+  fs.writeFileSync(path.join(targetDirectory, reportName || 'index.html'), html);
+}
+
 function writeImage(fileName, data) {
   fs.writeFileSync(fileName, new Buffer(data, 'base64'));
   console.log('Wrote %s', fileName);
+}
+
+function getStatus(feature) {
+  var result = Summary.getFetureResult(feature);
+  feature.status = result.failedScenarios === 0 ? 'passed': 'failed';
+  return feature;
+}
+
+function parseTags(feature) {
+  if (feature.tags !== undefined) {
+    feature.tags = feature.tags.map(function(tag) {
+      return tag.name;
+    }).join(', ');
+  } else {
+    feature.tags = '';
+  }
+  return feature;
+}
+
+function saveEmbeddings(feature, options) {
+  if (feature.elements) {
+    feature.elements.forEach(function(element) {
+      saveEmbeddedImages(options.dest, element, element.steps);
+      element.steps = element.steps.filter(isValidStep);
+    });
+  }
+  return feature;
+}
+
+function saveEmbeddedImages(destPath, element, steps) {
+  steps = steps || [];
+  steps.forEach(function(step) {
+    if (step.embeddings) {
+      step.embeddings.forEach(function(embedding) {
+        if (embedding.mime_type === 'image/png') {
+          var imageName = createFileName(element.name + ':' + element.line) + '.png';
+          var fileName = path.join(destPath, imageName);
+          element.imageName = imageName; // Save imageName on element so we use it in HTML
+          writeImage(fileName, embedding.data);
+        }
+      });
+    }
+  });
 }
 
 function mustacheImageHandler() {

@@ -7,11 +7,9 @@ var
 
 var defaultTemplate = path.join(__dirname, 'templates', 'default.html');
 
-var CucumberHtmlReport = function(options) {
+var CucumberHtmlReport = module.exports = function(options) {
   this.options = options || {};
 };
-
-module.exports = CucumberHtmlReport;
 
 CucumberHtmlReport.prototype.createReport = function() {
   var options = this.options;

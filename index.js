@@ -111,15 +111,21 @@ function parseTags(feature) {
   return feature;
 }
 
-function processScenarios(feature, options) {
-  var scenarios = feature.elements;
-  if (scenarios) {
-    scenarios.forEach(function(scenario) {
-      scenario.status = getScenarioStatus(scenario);
-      saveEmbeddedImages(options.dest, scenario, scenario.steps);
-      scenario.steps = scenario.steps.filter(isValidStep);
-    });
+function isScenarioType(scenario){
+  return scenario.type === 'scenario';
+}
+
+function processScenario(options) {
+  return function(scenario) {
+    scenario.status = getScenarioStatus(scenario);
+    saveEmbeddedImages(options.dest, scenario, scenario.steps);
+    scenario.steps = scenario.steps.filter(isValidStep);
   }
+}
+
+function processScenarios(feature, options) {
+  var scenarios = (feature.elements || []).filter(isScenarioType);
+  scenarios.forEach(processScenario(options));
   return feature;
 }
 
@@ -131,7 +137,8 @@ function saveEmbeddedImages(destPath, element, steps) {
         if (embedding.mime_type === 'image/png') {
           var imageName = createFileName(element.name + ':' + element.line) + '.png';
           var fileName = path.join(destPath, imageName);
-          element.imageName = imageName; // Save imageName on element so we use it in HTML
+          // Save imageName on element so we use it in HTML
+          element.imageName = imageName;
           writeImage(fileName, embedding.data);
         }
       });

@@ -49,6 +49,11 @@ module.exports = function() {
     callback();
   });
 
+  this.Given(/^a feature with a skipped scenario/, function(callback) {
+    feature = require(path.join(__dirname, 'testdata/feature_skipped.json'))[0];
+    callback();
+  });
+
   this.Then(/^it should return status "([^"]*)" for feature$/, function(status, callback) {
     var featureStatus = Summary.getFeatureStatus(feature);
     expect(featureStatus).to.equal(status);

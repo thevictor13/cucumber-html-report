@@ -56,6 +56,17 @@
       text-transform: capitalize;
     }
 
+    .datatable {
+      margin-left: 2em;
+      width: auto;
+      border-width: 1pt;
+      margin-top: 0.6em;
+      font-size: 80%;
+    }
+    .datatable td {
+      border: rgba(162, 162, 162, 0.16) 1px solid;
+    }
+
     h1 {
       margin: 0;
       padding: 20px 10px 10px 10px;
@@ -170,7 +181,7 @@
 
     .footer a, footer a:visited { color: #3C494C; }
 
-    .copy-to-clipboard { /* as small as possible, as when hidden, copy will not work */
+    .copy-to-clipboard { /* as small as possible - when hidden, copy will not work */
       width: 2em;
       height: 2em;
       position: fixed;
@@ -244,6 +255,7 @@
       <span class="scenario-tag">{{name}}</span>
       {{/tags}}
     </h3>
+
     <table>
       <tr>
         <th style="width: 100px;">Condition</th>
@@ -251,20 +263,35 @@
         <th style="width: 100px;">Line</th>
         <th style="width: 100px;">Status</th>
       </tr>
+
       {{#steps}}
       <tr class="{{result.status}}">
         <td>{{keyword}}</td>
-        <td>{{name}}</td>
+        <td>
+          {{name}}
+          <table class="datatable">
+            <!-- {{#rows}} -->
+            <tr>
+              <!-- {{#cells}} -->
+                <td>{{.}}</td>
+              <!-- {{/cells}} -->
+            </tr>
+            <!-- {{/rows}} -->
+          </table>
+        </td>
         <td>{{line}}</td>
         <td class="status">{{result.status}}</td>
       </tr>
+
       <tr class="hidden {{result.status}}">
         <td colspan="4">
           <pre>{{result.error_message}}</pre>
         </td>
       </tr>
       {{/steps}}
+
     </table>
+
     {{#image}}{{imageName}}{{/image}}
     {{/elements}}
   </div>
@@ -280,8 +307,8 @@
   (function() {
     'use strict';
 
+    // Thanks to http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript/30810322#30810322
     function copyTextToClipboard(text) {
-      // Thanks to http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript/30810322#30810322
       // Puts the supplied text into a hidden text area to select it and copy it the clipboard
       var textArea = document.createElement("textarea");
       textArea.class = 'copy-to-clipboard';
@@ -310,8 +337,10 @@
         })(i));
       }
       else if (failed[i].classList.contains('hidden')) {
+        console.log('elif here');
         failed[i].addEventListener('click', (function(i) {
           return function() {
+            console.log('im here now');
             if (failed[i].classList.contains('hidden')) {
               failed[i].classList.remove('hidden');
             } else {

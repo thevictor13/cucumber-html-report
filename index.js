@@ -1,6 +1,7 @@
 var
   fs = require('fs'),
   path = require('path'),
+  slug = require('slug'),
   Mustache = require('mustache'),
   Directory = require('./lib/directory'),
   Summary = require('./lib/summary');
@@ -79,7 +80,7 @@ function loadTemplate(templateFile) {
 }
 
 function createFileName(name) {
-  return name.split('\W+').join('_').toLowerCase();
+  return slug(name, '_');
 }
 
 function saveHTML(targetDirectory, reportName, html) {
@@ -135,7 +136,7 @@ function saveEmbeddedImages(destPath, element, steps) {
     if (step.embeddings) {
       step.embeddings.forEach(function(embedding) {
         if (embedding.mime_type === 'image/png') {
-          var imageName = createFileName(element.name + ':' + element.line) + '.png';
+          var imageName = createFileName(element.name + '-' + element.line) + '.png';
           var fileName = path.join(destPath, imageName);
           // Save imageName on element so we use it in HTML
           element.imageName = imageName;

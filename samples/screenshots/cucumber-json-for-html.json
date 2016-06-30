@@ -1,8 +1,8 @@
 [
   {
-    "id": "Monitor-Multi-table",
-    "name": "Monitor Multi-table",
-    "description": "As a logged-in user of Thin Monitor 2,\r\nI want to be able to drag RICs between multiple-tables\r\nFor generic reasons",
+    "id": "Thing-Multi-view",
+    "name": "Thing Multi-view: badly written test",
+    "description": "As a logged-in user of Sat,\r\nI want to be able to drag XXXs between multiple-columns\r\nFor genexxx reasons",
     "line": 4,
     "keyword": "Feature",
     "tags": [
@@ -19,7 +19,7 @@
         "line": 3
       }
     ],
-    "uri": "D:/src/thin-monitor2/test/e2e/features/workflow-top3-multi-tables.feature",
+    "uri": "/src/sat/test/e2e/features/workflow-top3-multi-view.feature",
     "elements": [
       {
         "name": "",
@@ -29,7 +29,7 @@
         "line": 9,
         "steps": [
           {
-            "name": "that I have opened ThinMonitor2 and it is ready",
+            "name": "that I have opened Sat and it is ready",
             "line": 10,
             "keyword": "Given "
           }
@@ -37,14 +37,14 @@
       },
       {
         "name": "Default menu view",
-        "id": "Monitor-Multi-table;default-menu-view",
+        "id": "Thing-Multi-view;default-menu-view",
         "line": 12,
         "keyword": "Scenario",
         "description": "",
         "type": "scenario",
         "steps": [
           {
-            "name": "that I have opened ThinMonitor2 and it is ready",
+            "name": "that I have opened Sat and it is ready",
             "line": 10,
             "keyword": "Given ",
             "result": {
@@ -54,7 +54,7 @@
             "match": {}
           },
           {
-            "name": "I click on the system menu icon",
+            "name": "I click on the view menu icon",
             "line": 13,
             "keyword": "When ",
             "result": {
@@ -64,7 +64,7 @@
             "match": {}
           },
           {
-            "name": "select \"Multi-Tables\" from the open system menu",
+            "name": "select \"Multi-View\" from the open view menu",
             "line": 14,
             "keyword": "And ",
             "result": {
@@ -74,7 +74,7 @@
             "match": {}
           },
           {
-            "name": "the multi-table menu is seen to have the following entries",
+            "name": "the multi-view menu is seen to have the following entries",
             "line": 15,
             "keyword": "Then ",
             "rows": [
@@ -92,31 +92,31 @@
               },
               {
                 "cells": [
-                  "1 Table",
+                  "1 Column",
                   "No"
                 ]
               },
               {
                 "cells": [
-                  "2 Tables",
+                  "2 Columns",
                   "Yes"
                 ]
               },
               {
                 "cells": [
-                  "3 Tables",
+                  "3 Columns",
                   "Yes"
                 ]
               },
               {
                 "cells": [
-                  "4 Tables",
+                  "4 Columns",
                   "Yes"
                 ]
               },
               {
                 "cells": [
-                  "5 Tables",
+                  "5 Columns",
                   "Yes"
                 ]
               }
@@ -139,15 +139,15 @@
         ]
       },
       {
-        "name": "Set display to three tables",
-        "id": "Monitor-Multi-table;set-display-to-three-tables",
+        "name": "Set display to three columns",
+        "id": "Thing-Multi-view;set-display-to-three-columns",
         "line": 24,
         "keyword": "Scenario",
         "description": "",
         "type": "scenario",
         "steps": [
           {
-            "name": "that I have opened ThinMonitor2 and it is ready",
+            "name": "that I have opened Sat and it is ready",
             "line": 10,
             "keyword": "Given ",
             "result": {
@@ -157,7 +157,7 @@
             "match": {}
           },
           {
-            "name": "I click on the system menu icon",
+            "name": "I click on the view menu icon",
             "line": 25,
             "keyword": "When ",
             "result": {
@@ -167,7 +167,7 @@
             "match": {}
           },
           {
-            "name": "select \"Multi-Tables\" from the open system menu",
+            "name": "select \"Multi-View\" from the open view menu",
             "line": 26,
             "keyword": "And ",
             "result": {
@@ -177,7 +177,7 @@
             "match": {}
           },
           {
-            "name": "I select \"3 Tables\" from the open Multi-tables menu",
+            "name": "I select \"3 Columns\" from the open Multi-view menu",
             "line": 27,
             "keyword": "When ",
             "result": {
@@ -187,13 +187,13 @@
             "match": {}
           },
           {
-            "name": "3 identical Monitor tables are displayed",
+            "name": "3 identical Thing columns are displayed",
             "line": 28,
             "keyword": "Then ",
             "result": {
               "status": "failed",
               "duration": 128544136,
-              "error_message": "AssertionError: Number of .tr-grid elements: expected 4 to equal 3\n    at D:\\src\\thin-monitor2\\test\\e2e\\step-definitions\\lib\\display.spec.js:289:56\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)"
+              "error_message": "AssertionError: Number of sheet elements: expected 4 to equal 3\n    at \\src\\sat\\test\\e2e\\step-definitions\\lib\\display.spec.js:289:56\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)"
             },
             "match": {}
           },
@@ -215,21 +215,21 @@
         ]
       },
       {
-        "name": "Drag chain RIC between two of three tables within a monitor",
-        "id": "Monitor-Multi-table;drag-chain-ric-between-two-of-three-tables-within-a-monitor",
+        "name": "Drag chain XXX between two of three columns within a thing",
+        "id": "Thing-Multi-view;drag-chain-xxx-between-two-of-three-columns-within-a-thing",
         "line": 31,
         "keyword": "Scenario",
         "description": "",
         "type": "scenario",
         "tags": [
           {
-            "name": "@3tables",
+            "name": "@3columns",
             "line": 30
           }
         ],
         "steps": [
           {
-            "name": "that I have opened ThinMonitor2 and it is ready",
+            "name": "that I have opened Sat and it is ready",
             "line": 10,
             "keyword": "Given ",
             "result": {
@@ -239,7 +239,7 @@
             "match": {}
           },
           {
-            "name": "I select \"Multi-Tables\" > \"3 Tables\" from the System Menu",
+            "name": "I select \"Multi-View\" > \"3 Columns\" from the View meNu",
             "line": 32,
             "keyword": "When ",
             "result": {
@@ -249,7 +249,7 @@
             "match": {}
           },
           {
-            "name": "I enter \".FTSE\" into row 1 of table 1",
+            "name": "I enter \".FTSE\" into row 1 of column 1",
             "line": 33,
             "keyword": "And ",
             "result": {
@@ -265,12 +265,12 @@
             "result": {
               "status": "failed",
               "duration": 5154036514,
-              "error_message": "Error: Wait timed out after 5010ms\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2241:22\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)\nFrom: Task: <anonymous wait>\n    at ControlFlow.wait (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2229:17)\n    at WebDriver.wait (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\webdriver.js:688:29)\n    at [object Object].to.(anonymous function) [as wait] (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\built\\protractor.js:68:25)\n    at D:\\src\\thin-monitor2\\test\\e2e\\step-definitions\\lib\\mouse.spec.js:213:13\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)"
+              "error_message": "Error: Wait timed out after 5010ms\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2241:22\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)\nFrom: Task: <anonymous wait>\n    at ControlFlow.wait (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2229:17)\n    at WebDriver.wait (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\webdriver.js:688:29)\n    at [object Object].to.(anonymous function) [as wait] (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\built\\protractor.js:68:25)\n    at \\src\\sat\\test\\e2e\\step-definitions\\lib\\mouse.spec.js:213:13\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)"
             },
             "match": {}
           },
           {
-            "name": "the monitor in table 1 has 101 entries",
+            "name": "the thing in column 1 has 101 entries",
             "line": 35,
             "keyword": "Then ",
             "result": {
@@ -279,7 +279,7 @@
             "match": {}
           },
           {
-            "name": "drag and drop from row 1 of table 1 to row 1 of table 3",
+            "name": "drag and drop from row 1 of column 1 to row 1 of column 3",
             "line": 36,
             "keyword": "And ",
             "result": {
@@ -288,7 +288,7 @@
             "match": {}
           },
           {
-            "name": "row 1 of table 1 is empty",
+            "name": "row 1 of column 1 is empty",
             "line": 37,
             "keyword": "Then ",
             "result": {
@@ -297,7 +297,7 @@
             "match": {}
           },
           {
-            "name": "row 1 of table 2 is empty",
+            "name": "row 1 of column 2 is empty",
             "line": 38,
             "keyword": "And ",
             "result": {
@@ -306,7 +306,7 @@
             "match": {}
           },
           {
-            "name": "row 1 of table 3 is not empty",
+            "name": "row 1 of column 3 is not empty",
             "line": 39,
             "keyword": "And ",
             "result": {
@@ -334,9 +334,9 @@
     ]
   },
   {
-    "id": "Monitor-Multi-table",
-    "name": "Monitor Multi-table",
-    "description": "As a logged-in user of Thin Monitor 2,\r\nI want to be able to drag RICs between multiple-tables\r\nFor generic reasons",
+    "id": "Thing-Multi-view",
+    "name": "Thing Multi-view",
+    "description": "As a logged-in user of Sat,\r\nI want to be able to drag XXXs between multiple-columns\r\nFor genexxx reasons",
     "line": 4,
     "keyword": "Feature",
     "tags": [
@@ -353,7 +353,7 @@
         "line": 3
       }
     ],
-    "uri": "D:\\src\\thin-monitor2\\test\\e2e\\features\\workflow-top3-multi-tables.feature",
+    "uri": "\\src\\sat\\test\\e2e\\features\\workflow-top3-multi-view.feature",
     "elements": [
       {
         "name": "",
@@ -363,7 +363,7 @@
         "line": 9,
         "steps": [
           {
-            "name": "that I have opened ThinMonitor2 and it is ready",
+            "name": "that I have opened Sat and it is ready",
             "line": 10,
             "keyword": "Given "
           }
@@ -371,14 +371,14 @@
       },
       {
         "name": "Default menu view",
-        "id": "Monitor-Multi-table;default-menu-view",
+        "id": "Thing-Multi-view;default-menu-view",
         "line": 12,
         "keyword": "Scenario",
         "description": "",
         "type": "scenario",
         "steps": [
           {
-            "name": "that I have opened ThinMonitor2 and it is ready",
+            "name": "that I have opened Sat and it is ready",
             "line": 10,
             "keyword": "Given ",
             "result": {
@@ -388,7 +388,7 @@
             "match": {}
           },
           {
-            "name": "I click on the system menu icon",
+            "name": "I click on the view menu icon",
             "line": 13,
             "keyword": "When ",
             "result": {
@@ -398,7 +398,7 @@
             "match": {}
           },
           {
-            "name": "select \"Multi-Tables\" from the open system menu",
+            "name": "select \"Multi-View\" from the open view menu",
             "line": 14,
             "keyword": "And ",
             "result": {
@@ -408,7 +408,7 @@
             "match": {}
           },
           {
-            "name": "the multi-table menu is seen to have the following entries",
+            "name": "the multi-view menu is seen to have the following entries",
             "line": 15,
             "keyword": "Then ",
             "rows": [
@@ -426,31 +426,31 @@
               },
               {
                 "cells": [
-                  "1 Table",
+                  "1 Column",
                   "No"
                 ]
               },
               {
                 "cells": [
-                  "2 Tables",
+                  "2 Columns",
                   "Yes"
                 ]
               },
               {
                 "cells": [
-                  "3 Tables",
+                  "3 Columns",
                   "Yes"
                 ]
               },
               {
                 "cells": [
-                  "4 Tables",
+                  "4 Columns",
                   "Yes"
                 ]
               },
               {
                 "cells": [
-                  "5 Tables",
+                  "5 Columns",
                   "Yes"
                 ]
               }
@@ -473,15 +473,15 @@
         ]
       },
       {
-        "name": "Set display to three tables",
-        "id": "Monitor-Multi-table;set-display-to-three-tables",
+        "name": "Set display to three columns",
+        "id": "Thing-Multi-view;set-display-to-three-columns",
         "line": 24,
         "keyword": "Scenario",
         "description": "",
         "type": "scenario",
         "steps": [
           {
-            "name": "that I have opened ThinMonitor2 and it is ready",
+            "name": "that I have opened Sat and it is ready",
             "line": 10,
             "keyword": "Given ",
             "result": {
@@ -491,7 +491,7 @@
             "match": {}
           },
           {
-            "name": "I click on the system menu icon",
+            "name": "I click on the view menu icon",
             "line": 25,
             "keyword": "When ",
             "result": {
@@ -501,7 +501,7 @@
             "match": {}
           },
           {
-            "name": "select \"Multi-Tables\" from the open system menu",
+            "name": "select \"Multi-View\" from the open view menu",
             "line": 26,
             "keyword": "And ",
             "result": {
@@ -511,7 +511,7 @@
             "match": {}
           },
           {
-            "name": "I select \"3 Tables\" from the open Multi-tables menu",
+            "name": "I select \"3 Columns\" from the open Multi-view menu",
             "line": 27,
             "keyword": "When ",
             "result": {
@@ -521,13 +521,13 @@
             "match": {}
           },
           {
-            "name": "3 identical Monitor tables are displayed",
+            "name": "3 identical Thing columns are displayed",
             "line": 28,
             "keyword": "Then ",
             "result": {
               "status": "failed",
               "duration": 128355114,
-              "error_message": "AssertionError: Number of .tr-grid elements: expected 4 to equal 3\n    at D:\\src\\thin-monitor2\\test\\e2e\\step-definitions\\lib\\display.spec.js:289:56\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)"
+              "error_message": "AssertionError: Number of sheet elements: expected 4 to equal 3\n    at \\src\\sat\\test\\e2e\\step-definitions\\lib\\display.spec.js:289:56\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)"
             },
             "match": {}
           },
@@ -549,21 +549,21 @@
         ]
       },
       {
-        "name": "Drag chain RIC between two of three tables within a monitor",
-        "id": "Monitor-Multi-table;drag-chain-ric-between-two-of-three-tables-within-a-monitor",
+        "name": "Drag chain XXX between two of three columns within a thing",
+        "id": "Thing-Multi-view;drag-chain-xxx-between-two-of-three-columns-within-a-thing",
         "line": 31,
         "keyword": "Scenario",
         "description": "",
         "type": "scenario",
         "tags": [
           {
-            "name": "@3tables",
+            "name": "@3columns",
             "line": 30
           }
         ],
         "steps": [
           {
-            "name": "that I have opened ThinMonitor2 and it is ready",
+            "name": "that I have opened Sat and it is ready",
             "line": 10,
             "keyword": "Given ",
             "result": {
@@ -573,7 +573,7 @@
             "match": {}
           },
           {
-            "name": "I select \"Multi-Tables\" > \"3 Tables\" from the System Menu",
+            "name": "I select \"Multi-View\" > \"3 Columns\" from the View meNu",
             "line": 32,
             "keyword": "When ",
             "result": {
@@ -583,7 +583,7 @@
             "match": {}
           },
           {
-            "name": "I enter \".FTSE\" into row 1 of table 1",
+            "name": "I enter \".FTSE\" into row 1 of column 1",
             "line": 33,
             "keyword": "And ",
             "result": {
@@ -599,12 +599,12 @@
             "result": {
               "status": "failed",
               "duration": 5155613412,
-              "error_message": "Error: Wait timed out after 5016ms\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2241:22\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)\nFrom: Task: <anonymous wait>\n    at ControlFlow.wait (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2229:17)\n    at WebDriver.wait (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\webdriver.js:688:29)\n    at [object Object].to.(anonymous function) [as wait] (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\built\\protractor.js:68:25)\n    at D:\\src\\thin-monitor2\\test\\e2e\\step-definitions\\lib\\mouse.spec.js:213:13\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)"
+              "error_message": "Error: Wait timed out after 5016ms\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2241:22\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)\nFrom: Task: <anonymous wait>\n    at ControlFlow.wait (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2229:17)\n    at WebDriver.wait (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\webdriver.js:688:29)\n    at [object Object].to.(anonymous function) [as wait] (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\built\\protractor.js:68:25)\n    at \\src\\sat\\test\\e2e\\step-definitions\\lib\\mouse.spec.js:213:13\n    at Promise.invokeCallback_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:1329:14)\n    at TaskQueue.execute_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2790:14)\n    at TaskQueue.executeNext_ (C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2773:21)\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:2652:27\n    at C:\\Users\\lee\\AppData\\Roaming\\npm\\node_modules\\protractor\\node_modules\\selenium-webdriver\\lib\\promise.js:639:7\n    at process._tickCallback (node.js:379:9)"
             },
             "match": {}
           },
           {
-            "name": "the monitor in table 1 has 101 entries",
+            "name": "the thing in column 1 has 101 entries",
             "line": 35,
             "keyword": "Then ",
             "result": {
@@ -613,7 +613,7 @@
             "match": {}
           },
           {
-            "name": "drag and drop from row 1 of table 1 to row 1 of table 3",
+            "name": "drag and drop from row 1 of column 1 to row 1 of column 3",
             "line": 36,
             "keyword": "And ",
             "result": {
@@ -622,7 +622,7 @@
             "match": {}
           },
           {
-            "name": "row 1 of table 1 is empty",
+            "name": "row 1 of column 1 is empty",
             "line": 37,
             "keyword": "Then ",
             "result": {
@@ -631,7 +631,7 @@
             "match": {}
           },
           {
-            "name": "row 1 of table 2 is empty",
+            "name": "row 1 of column 2 is empty",
             "line": 38,
             "keyword": "And ",
             "result": {
@@ -640,7 +640,7 @@
             "match": {}
           },
           {
-            "name": "row 1 of table 3 is not empty",
+            "name": "row 1 of column 3 is not empty",
             "line": 39,
             "keyword": "And ",
             "result": {

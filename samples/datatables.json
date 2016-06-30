@@ -1,0 +1,2024 @@
+[
+  {
+    "id": "Format-Options",
+    "name": "Format Options",
+    "description": "As a logged-in user of SUT\r\nI want to be able to format columns\r\nSo that they are easier to monitor",
+    "line": 5,
+    "keyword": "Feature",
+    "tags": [
+      {
+        "name": "@top-workflow",
+        "line": 1
+      },
+      {
+        "name": "@top1",
+        "line": 2
+      },
+      {
+        "name": "@new",
+        "line": 3
+      },
+      {
+        "name": "@column-format",
+        "line": 4
+      }
+    ],
+    "uri": "/src/suttest/e2e/features/workflow-top1-column-format.feature",
+    "elements": [
+      {
+        "name": "Log in and get initial state.",
+        "keyword": "Background",
+        "description": "",
+        "type": "background",
+        "line": 10,
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "name": "Assert the column format dialog is as expected",
+        "id": "Format-Options;assert-the-column-format-dialog-is-as-expected",
+        "line": 13,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 7931831873
+            },
+            "match": {}
+          },
+          {
+            "name": "the column format dialog is open for a numeric column",
+            "line": 14,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 215767327
+            },
+            "match": {}
+          },
+          {
+            "name": "the column format dialog looks like this:",
+            "line": 15,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "Value Format",
+                  "Display Style"
+                ]
+              },
+              {
+                "cells": [
+                  "General",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Number",
+                  "Bar"
+                ]
+              },
+              {
+                "cells": [
+                  "Scaled Values",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 608473112
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 923445
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XXX.ShemaFinal",
+        "id": "Format-Options;re-format-numeric-column-XXX.shemafinal",
+        "line": 39,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 8066165286
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XXX.ShemaFinal\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 893184328
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 484639997
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Close\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1018822991
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1154275144
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 7222484
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 7144936
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1092659227
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 6370315
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 229792
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XXX.FoobId",
+        "id": "Format-Options;re-format-numeric-column-XXX.foobid",
+        "line": 40,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 7221770716
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XXX.FoobId\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 892996445
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 461885737
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Bid\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1009159180
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1165923549
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 6651710
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 8948206
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1089396807
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 6620919
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 170491
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XXX.FloatPercentage",
+        "id": "Format-Options;re-format-numeric-column-XXX.FloatPercentage",
+        "line": 41,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 7094193360
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XXX.FloatPercentage\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 894091807
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 471932725
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Float Percent\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1009737082
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1152975651
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 7098464
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 6499751
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1110299616
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 6986420
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 247469
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XX_Final",
+        "id": "Format-Options;re-format-numeric-column-xx_final",
+        "line": 42,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 7476327854
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XX_Final\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 894257736
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 432128522
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Last\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1036893599
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1171989659
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 6578724
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 5872527
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1084064264
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 4988141
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 184746
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XXX.BumblEactuaL",
+        "id": "Format-Options;re-format-numeric-column-XXX.bumbleactual",
+        "line": 43,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 7242189992
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XXX.BumblEactuaL\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 890739294
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 466292271
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Total Assets - Actual\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1007238450
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1144759016
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 5134969
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 5848293
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1086792117
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 5635892
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 172202
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XXX.Volume",
+        "id": "Format-Options;re-format-numeric-column-XXX.volume",
+        "line": 44,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 7209998292
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XXX.Volume\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 892543989
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 528220375
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Volume\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1009488758
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1167135231
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 7071666
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 6645153
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1091845832
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 7329397
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 183891
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Format-Options",
+    "name": "Format Options",
+    "description": "As a logged-in user of SUT\r\nI want to be able to format columns\r\nSo that they are easier to monitor",
+    "line": 5,
+    "keyword": "Feature",
+    "tags": [
+      {
+        "name": "@top-workflow",
+        "line": 1
+      },
+      {
+        "name": "@top1",
+        "line": 2
+      },
+      {
+        "name": "@new",
+        "line": 3
+      },
+      {
+        "name": "@column-format",
+        "line": 4
+      }
+    ],
+    "uri": "\\src\\thin-monitor2\\test\\e2e\\features\\workflow-top1-column-format.feature",
+    "elements": [
+      {
+        "name": "Log in and get initial state.",
+        "keyword": "Background",
+        "description": "",
+        "type": "background",
+        "line": 10,
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "name": "Assert the column format dialog is as expected",
+        "id": "Format-Options;assert-the-column-format-dialog-is-as-expected",
+        "line": 13,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 7248082191
+            },
+            "match": {}
+          },
+          {
+            "name": "the column format dialog is open for a numeric column",
+            "line": 14,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 224910257
+            },
+            "match": {}
+          },
+          {
+            "name": "the column format dialog looks like this:",
+            "line": 15,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "Value Format",
+                  "Display Style"
+                ]
+              },
+              {
+                "cells": [
+                  "General",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Number",
+                  "Bar"
+                ]
+              },
+              {
+                "cells": [
+                  "Scaled Values",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 606218526
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 354381
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XXX.ShemaFinal",
+        "id": "Format-Options;re-format-numeric-column-XXX.shemafinal",
+        "line": 39,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 7139811360
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XXX.ShemaFinal\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 892718756
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 441482997
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Close\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1007193688
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1145102564
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 5499614
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 6628902
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1081184735
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 4588999
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 189877
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XXX.FoobId",
+        "id": "Format-Options;re-format-numeric-column-XXX.foobid",
+        "line": 40,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 8057538676
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XXX.FoobId\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 892914337
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 453850428
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Bid\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1008748634
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1145912253
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 6475517
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 6338954
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1083117155
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 5159772
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 167070
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XXX.FloatPercentage",
+        "id": "Format-Options;re-format-numeric-column-XXX.FloatPercentage",
+        "line": 41,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 8081222654
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XXX.FloatPercentage\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 893639920
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 487859082
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Float Percent\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1008384844
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1168418475
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 5773596
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 5591132
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1085800533
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 6452139
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 418244
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XX_Final",
+        "id": "Format-Options;re-format-numeric-column-xx_final",
+        "line": 42,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 7387556846
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XX_Final\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 893035505
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 454759048
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Last\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1007952344
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1147366272
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 5297192
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 6095476
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1084435750
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 4828485
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 200712
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XXX.BumblEactuaL",
+        "id": "Format-Options;re-format-numeric-column-XXX.bumbleactual",
+        "line": 43,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 8065104993
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XXX.BumblEactuaL\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 893541845
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 493904095
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Total Assets - Actual\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1009025753
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1170122243
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 5686926
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 5865399
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1079619240
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 6192696
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 169351
+            },
+            "match": {}
+          }
+        ]
+      },
+      {
+        "name": "Re-format numeric column XXX.Volume",
+        "id": "Format-Options;re-format-numeric-column-XXX.volume",
+        "line": 44,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "that I have opened SUT and it is ready",
+            "line": 11,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 8128421542
+            },
+            "match": {}
+          },
+          {
+            "name": "I have typed \"XXX.Volume\" into the header of column 3",
+            "line": 22,
+            "keyword": "Given ",
+            "result": {
+              "status": "passed",
+              "duration": 893424954
+            },
+            "match": {}
+          },
+          {
+            "name": "I have selected the first entry from the auto-suggestion list",
+            "line": 23,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 470520045
+            },
+            "match": {}
+          },
+          {
+            "name": "\"Volume\" is displayed in the header of column 3",
+            "line": 24,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1016693566
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 25,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "Number"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "Heatmap"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1144481612
+            },
+            "match": {}
+          },
+          {
+            "name": "the data in column 3 is set to 2 decimal places",
+            "line": 29,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 7291479
+            },
+            "match": {}
+          },
+          {
+            "name": "a background color is applied to the cells in column 3",
+            "line": 30,
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 7632745
+            },
+            "match": {}
+          },
+          {
+            "name": "I set the format of column 3:",
+            "line": 31,
+            "keyword": "Then ",
+            "rows": [
+              {
+                "cells": [
+                  "TABBUTTON",
+                  "MENUITEM"
+                ]
+              },
+              {
+                "cells": [
+                  "Value Format",
+                  "General"
+                ]
+              },
+              {
+                "cells": [
+                  "Display Style",
+                  "General"
+                ]
+              }
+            ],
+            "result": {
+              "status": "passed",
+              "duration": 1087885483
+            },
+            "match": {}
+          },
+          {
+            "name": "column 3 is set to its default background colour",
+            "line": 35,
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 6305026
+            },
+            "match": {}
+          },
+          {
+            "keyword": "After ",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 172772
+            },
+            "match": {}
+          }
+        ]
+      }
+    ]
+  }
+]

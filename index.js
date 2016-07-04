@@ -2,6 +2,7 @@ var
   fs = require('fs'),
   path = require('path'),
   slug = require('slug'),
+  atob = require('atob'),
   Mustache = require('mustache'),
   Directory = require('./lib/directory'),
   Summary = require('./lib/summary');
@@ -120,7 +121,7 @@ function isScenarioType(scenario){
 function processScenario(options) {
   return function(scenario) {
     scenario.status = getScenarioStatus(scenario);
-    saveEmbeddedImages(options.dest, scenario, scenario.steps);
+    saveEmbeddedMetadata(options.dest, scenario, scenario.steps);
     scenario.steps = scenario.steps.filter(isValidStep);
   }
 }
@@ -131,7 +132,7 @@ function processScenarios(feature, options) {
   return feature;
 }
 
-function saveEmbeddedImages(destPath, element, steps) {
+function saveEmbeddedMetadata(destPath, element, steps) {
   steps = steps || [];
   steps.forEach(function(step) {
     if (step.embeddings) {
@@ -142,6 +143,13 @@ function saveEmbeddedImages(destPath, element, steps) {
           // Save imageName on element so we use it in HTML
           element.imageName = imageName;
           writeImage(fileName, embedding.data);
+        }
+        else if (embedding.mime_type === 'text/plain') {
+          // Save plain text on element so we use it in HTML
+          element.plainTextMetadata = element.plainTextMetadata || [];
+
+          var decodedText = atob(embedding.data);
+          element.plainTextMetadata.push(decodedText);
         }
       });
     }

@@ -4,7 +4,9 @@
 
 Create HTML reports from cucumber json report files. Uses mustache to transform json to HTML.
 Also writes embeddings (base64 encoded PNG images) to disk and includes them in the HTML, 
-useful for showing screenshots from Protractor for example.
+useful for showing screenshots from Protractor for example. Plain text embeddings are also
+included in the HTML, useful for including additional information such as environment details
+and values of any randomly generated data.
 
 ![](http://www.pharatropic.eu/images/3a84dd33ba7fab98dc62cc272a38258f.jpg)
 

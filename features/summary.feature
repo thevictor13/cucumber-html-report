@@ -28,3 +28,7 @@ Feature: Report Summary module
   Scenario: Get status of a skipped scenario
     Given a feature with a skipped scenario
     Then it should return status "failed" for scenario
+
+  Scenario: Get status of a undefined scenario
+    Given a feature with a undefined scenario
+    Then it should return status "failed" for scenario

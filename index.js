@@ -7,6 +7,11 @@ var
   Directory = require('./lib/directory'),
   Summary = require('./lib/summary');
 
+  //Object.assign polyfill for older node versions
+  if (!Object.assign) {
+    Object.assign = require('object-assign');
+  }
+
 var defaultTemplate = path.join(__dirname, 'templates', 'default.html');
 
 var CucumberHtmlReport = module.exports = function(options) {
@@ -22,14 +27,14 @@ CucumberHtmlReport.prototype.createReport = function() {
   var features = parseFeatures(options, loadCucumberReport(this.options.source));
   var templateFile = options.template || defaultTemplate;
   var template = loadTemplate(templateFile);
-  var mustacheOptions = {
+  var mustacheOptions = Object.assign(options, {
     title: options.title || 'Cucumber Report',
     component: options.component || '',
     features: features,
     summary: Summary.calculateSummary(features),
     image: mustacheImageFormatter,
     duration: mustacheDurationFormatter
-  };
+  });
 
   var html = Mustache.to_html(template, mustacheOptions);
   saveHTML(options.dest, options.name, html);

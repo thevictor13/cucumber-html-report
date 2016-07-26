@@ -128,7 +128,13 @@ function processScenario(options) {
     scenario.status = getScenarioStatus(scenario);
     saveEmbeddedMetadata(options.dest, scenario, scenario.steps);
     scenario.steps = scenario.steps.filter(isValidStep);
+    scenario.steps = scenario.steps.map(processStep);
   }
+}
+
+function processStep(step) {
+  step.result.durationInMS = Math.round(step.result.duration / 1000000);
+  return step;
 }
 
 function processScenarios(feature, options) {

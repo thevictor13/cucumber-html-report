@@ -133,7 +133,7 @@ function processScenario(options) {
 }
 
 function processStep(step) {
-  step.result.durationInMS = Math.round(step.result.duration / 1000000);
+  step.result.durationInMS = step.result.duration ? Math.round(step.result.duration / 1000000) : 0;
   return step;
 }
 

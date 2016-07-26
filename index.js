@@ -7,6 +7,11 @@ var
   Directory = require('./lib/directory'),
   Summary = require('./lib/summary');
 
+  //Object.assign polyfill for older node versions
+  if (!Object.assign) {
+    Object.assign = require('object-assign');
+  }
+
 var defaultTemplate = path.join(__dirname, 'templates', 'default.html');
 
 var CucumberHtmlReport = module.exports = function(options) {

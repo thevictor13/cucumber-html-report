@@ -44,7 +44,7 @@ CucumberHtmlReport.prototype.createReport = function() {
 };
 
 function isValidStep(step) {
-  return true; //step.name !== undefined;
+  return step.name !== undefined;
 }
 
 function loadCucumberReport(fileName) {

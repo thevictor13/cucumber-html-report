@@ -178,10 +178,17 @@ function mustacheImageFormatter() {
   };
 }
 
+
 function mustacheDurationFormatter() {
-  // nanoseconds according to:
-  // https://groups.google.com/forum/#!topic/cukes/itAKGVwJHFg
-  return function(text, render) {
-    return render(text);
+ //converts nanoseconds to seconds 
+  return function(text, render) {  
+    var text =render(text);
+    var elapsedTime = text / 1000000000;
+    if (elapsedTime >= 60) {
+            data = parseInt(elapsedTime / 60) + 'm ' + (elapsedTime % 60).toFixed(0) + 's';
+        } else {
+            data =  elapsedTime.toFixed(2) + 's';
+        }      
+    return data;
   };
 }

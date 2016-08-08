@@ -180,9 +180,14 @@ function mustacheImageFormatter() {
 
 
 function mustacheDurationFormatter() {
-  // nanoseconds according to:
-  // https://groups.google.com/forum/#!topic/cukes/itAKGVwJHFg
+  //converts nanoseconds to seconds
   return function(text, render) {
-    return render(text);
+    var text =render(text);
+    var elapsedTime = text / 1000000000;
+    if (elapsedTime >= 60) {
+      return parseInt(elapsedTime / 60) + 'm ' + (elapsedTime % 60).toFixed(0) + 's';
+    } else {
+      return elapsedTime.toFixed(2) + 's';
+    }
   };
 }

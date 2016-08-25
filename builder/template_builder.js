@@ -1,30 +1,67 @@
 'use strict';
 
-var replace = require("replace");
-var fs      = require("fs");
+var replace   = require("replace");
+var Directory = require("../lib/directory.js");
+var fs        = require("fs");
 
-function templateBuilder(report, options) {
+function templateBuilder(report) {
 
     this.report = report || undefined;
     this.template = './' + this.report.options.template  || './extended_template.html';
 
+    this.checkOptions = function(options) {
+        // Make sure we have input file!
+        if (!fs.existsSync(options.source)){
+            console.error("Input file " + options.source + " does not exist! Aborting");
+            return false;
+        }
+
+        // Make sure we have template file!
+        if (options.hasOwnProperty('template') && !fs.existsSync(options.template)){
+            console.error("Template file " + options.template + " does not exist! Aborting");
+            return false;
+        }
+
+        // Create output directory if not exists
+        if (!fs.existsSync(options.dest)) {
+            Directory.mkdirpSync(options.dest);
+            console.log("Created directory: %s", options.dest);
+        }
+
+        // Make sure we have a name defined
+        if (typeof options.name === 'undefined'){
+            console.error("Template name " + options.name + " does not valid! Aborting");
+            return false;
+        }
+
+        return true;
+    }
+
 
     this.renderTemplate = function() {
         var self = this;
-        fs.readFile('./src/grid.html', 'utf8', function (err,data) {
-            if (err) return console.log(err);
+        return new Promise(function (resolve, reject) {
+            fs.readFile('./src/grid.html', 'utf8', function (err,data) {
+                if (err || !self.checkOptions(self.report.options)) {
+                    console.error(err);
+                    reject(err);
+                } else {
+                    fs.writeFile(self.template, data, 'utf8', function (err,data) {
+                        if (err) reject(err);
 
-            fs.writeFile(self.template, data, 'utf8', function (err,data) {
-                if (err) return console.log(err);
-
-                Promise.all([self.parseCss(), self.parseHtml(), self.parseJS()]).then(function(res){
-                    self.createReport(self.report);
-                }, function(err){
-                    console.log(err);
-                });
+                        Promise.all([self.parseCss(), self.parseHtml(), self.parseJS()]).then(function(res){
+                            self.createReport(self.report);
+                            //resolve(res);
+                        }, function(err){
+                            reject(err);
+                        });
+                    });
+                }
             });
         });
     }
+
+
 
     this.parseCss = function() {
         var self = this;

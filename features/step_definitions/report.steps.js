@@ -4,9 +4,13 @@ var
   path = require('path'),
   expect = require('chai').expect,
   sinon = require('sinon'),
-  Report = require('../../index');
+  Report = require("../../cucumber-html-report.js"),
+  templateBuilder	= require('../../builder/template_builder');
 
 var options = {};
+options.name = 'index.html'; 
+options.dest = './reports';
+options.template = 'extended_template.html';
 
 module.exports = function() {
 
@@ -38,6 +42,7 @@ module.exports = function() {
   });
 
   this.Given(/^no template is provided$/, function(callback) {
+    if (options.hasOwnProperty('template')) { delete options.template }
     expect(options).to.not.have.property('template');
     callback();
   });
@@ -48,18 +53,29 @@ module.exports = function() {
   });
 
   this.Given(/^a custom template is provided$/, function(callback) {
-    options.template = './templates/template2.html';
+    options.template = './extended_template.html';
     expect(options).to.have.property('template');
     callback();
   });
 
   this.When(/^I run the report generator$/, function(callback) {
-    new Report(options).createReport();
-    callback();
+    var report 		= new Report(options);
+    var template 	= new templateBuilder(report);
+    template.renderTemplate().then(function success(res){
+      callback();
+    }, function error(err){
+      console.log(err);
+    });
   });
 
   this.Then(/^I should get a HTML report in the "([^"]*)" directory$/, function(dir, callback) {
-    var reportFile = path.join('./' + dir, 'index.html');
+    var date 	= new Date;
+    var hour 	= date.getHours();
+    var year 	= date.getFullYear();
+    var month 	= date.getMonth();
+    var day 	= date.getDate();
+    //for the test, better to remove minutes and seconds from the index.js, to be sure filenames gonna match
+    var reportFile 	= path.join('./' + dir, 'report_'.concat(year, month, day, '_', hour, '.html'));
     expect(fs.existsSync(reportFile)).to.equal(true);
     callback();
   });

@@ -35,9 +35,6 @@ var CucumberHtmlReport = module.exports = function(options) {
 
 CucumberHtmlReport.prototype.createReport = function() {
   var options = this.options;
-  if (!checkOptions(options)) {
-    return false;
-  }
 
   var features = parseFeatures(options, loadCucumberReport(this.options.source));
   R.map(function (feature) {
@@ -287,28 +284,6 @@ function parseFeatures(options, features) {
     .map(function(feature) {
       return processScenarios(feature, options);
     });
-}
-
-function checkOptions(options) {
-  // Make sure we have input file!
-  if (!fs.existsSync(options.source)){
-    console.error("Input file " + options.source + " does not exist! Aborting");
-    return false;
-  }
-
-  // Make sure we have template file!
-  if (options.template && !fs.existsSync(options.template)){
-    console.error("Template file " + options.template + " does not exist! Aborting");
-    return false;
-  }
-
-  // Create output directory if not exists
-  if (!fs.existsSync(options.dest)) {
-    Directory.mkdirpSync(options.dest);
-    console.log("Created directory: %s", options.dest);
-  }
-
-  return true;
 }
 
 function loadTemplate(templateFile) {

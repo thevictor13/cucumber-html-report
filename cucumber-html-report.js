@@ -126,10 +126,6 @@ CucumberHtmlReport.prototype.createReport = function() {
   //Replaces "OK" and "NOK" with "Passed" and "Failed".
   summary.status = summary.status === "OK" ? "passed" : "failed";
 
-  var logoExtension = options.logo.split(".").pop();
-  var logo = "data:image/" + (logoExtension === "svg" ? "svg+xml" : logoExtension) + ";base64," + getDataUri(options.logo);  
-  var screenshots = createScreenshot(options);
-
   console.log('Brain bug 02');
 
   var tags = mappingTags(features);
@@ -148,8 +144,8 @@ CucumberHtmlReport.prototype.createReport = function() {
     scenarios: scenarios,
     scenariosJson: JSON.stringify(scenarios),
     summary: summary,
-    logo: logo,
-    //screenshots: screenshots,
+    logo: encodeLogo(options.logo),
+    screenshots: encodeScreenshot(options),
     tags: tagsArray,
     tagsJson: JSON.stringify(tagsArray),
     image: mustacheImageFormatter,
@@ -219,8 +215,8 @@ function createTagsArray(tags){
   })(tags);
 }
 
-function createScreenshot(options){
-  var newScreenshots = fs.readdirSync(options.screenshots).map(function (file) {
+function encodeScreenshot(options){
+  return fs.readdirSync(options.screenshots).map(function (file) {
     if (file[0] === ".") {
       return undefined;
     }
@@ -235,7 +231,6 @@ function createScreenshot(options){
   }).filter(function (image) {
     return image;
   });
-  return newScreenshots;
 }
 
 function stepDurationConverter(step){
@@ -413,4 +408,9 @@ function mustacheDurationFormatter() {
   return function(text, render) {
     return render(text);
   };
+}
+
+function encodeLogo (logoPath) {
+  var logoExtension = logoPath.split(".").pop();
+  return "data:image/" + (logoExtension === "svg" ? "svg+xml" : logoExtension) + ";base64," + getDataUri(logoPath);
 }

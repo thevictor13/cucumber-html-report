@@ -35,6 +35,15 @@ function templateBuilder(report) {
             console.error("Template name " + options.name + " does not valid! Aborting");
             return "File name error";
         }
+
+        if (!options.hasOwnProperty('logo') || options.logo.length < 3) {
+            this.report.options.logo = './logos/cucumber-logo.svg';
+        }
+
+        if (!options.hasOwnProperty('screenshots')) {
+            this.report.options.screenshots = './screenshots';
+        }
+
         return true;
     }
 

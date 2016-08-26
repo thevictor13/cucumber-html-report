@@ -37,7 +37,6 @@ CucumberHtmlReport.prototype.createReport = function() {
   var options = this.options;
 
   console.log(options);
-
   console.log('Creating in progress....');
 
   var features = parseFeatures(options, loadCucumberReport(this.options.source));
@@ -128,8 +127,7 @@ CucumberHtmlReport.prototype.createReport = function() {
   summary.status = summary.status === "OK" ? "passed" : "failed";
 
   var logoExtension = options.logo.split(".").pop();
-  var logo = "data:image/" + (logoExtension === "svg" ? "svg+xml" : logoExtension) + ";base64," + getDataUri(options.logo);
-  
+  var logo = "data:image/" + (logoExtension === "svg" ? "svg+xml" : logoExtension) + ";base64," + getDataUri(options.logo);  
   var screenshots = createScreenshot(options);
 
   console.log('Brain bug 02');
@@ -151,7 +149,7 @@ CucumberHtmlReport.prototype.createReport = function() {
     scenariosJson: JSON.stringify(scenarios),
     summary: summary,
     logo: logo,
-    screenshots: screenshots,
+    //screenshots: screenshots,
     tags: tagsArray,
     tagsJson: JSON.stringify(tagsArray),
     image: mustacheImageFormatter,

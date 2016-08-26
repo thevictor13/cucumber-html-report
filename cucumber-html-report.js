@@ -84,18 +84,7 @@ CucumberHtmlReport.prototype.createReport = function() {
           stepsSummary[index].failed++;
           break;
       }
-
-      //Converts the duration from nanoseconds to seconds and minutes (if any)
-      var duration = step.result.duration;
-      if (duration && duration / 60000000000 >= 1) {
-
-        //If the test ran for more than a minute, also display minutes.
-        step.result.convertedDuration = Math.trunc(duration / 60000000000) + " m " + round(2, (duration % 60000000000) / 1000000000) + " s";
-      } else if (duration && duration / 60000000000 < 1) {
-
-        //If the test ran for less than a minute, display only seconds.
-        step.result.convertedDuration = round(2, duration / 1000000000) + " s";
-      }
+      stepDurationConverter(step);
     });
 
     scenarios.push({
@@ -247,6 +236,20 @@ function createScreenshot(options){
     return image;
   });
   return newScreenshots;
+}
+
+function stepDurationConverter(step){
+  //Converts the duration from nanoseconds to seconds and minutes (if any)
+  var duration = step.result.duration;
+  if (duration && duration / 60000000000 >= 1) {
+
+    //If the test ran for more than a minute, also display minutes.
+    step.result.convertedDuration = Math.trunc(duration / 60000000000) + " m " + round(2, (duration % 60000000000) / 1000000000) + " s";
+  } else if (duration && duration / 60000000000 < 1) {
+
+    //If the test ran for less than a minute, display only seconds.
+    step.result.convertedDuration = round(2, duration / 1000000000) + " s";
+  }
 }
 
 function mappingTags(features) {

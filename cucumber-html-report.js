@@ -36,33 +36,11 @@ var CucumberHtmlReport = module.exports = function(options) {
 CucumberHtmlReport.prototype.createReport = function() {
   var options = this.options;
 
+  console.log('Creating in progress....');
+
   var features = parseFeatures(options, loadCucumberReport(this.options.source));
-  R.map(function (feature) {
-    var duration = R.compose(
-      R.reduce(function (accumulator, current) {
-        return accumulator + current;
-      }, 0),
-      R.flatten(),
-      R.map(function (step) {
-        return step.result.duration ? step.result.duration : 0;
-      }),
-      R.flatten(),
-      R.map(function (element) {
-        return element.steps;
-      })
-    )(feature.elements);
-
-    if (duration && duration / 60000000000 >= 1) {
-
-      //If the test ran for more than a minute, also display minutes.
-      feature.duration = Math.trunc(duration / 60000000000) + " m " + round(2, (duration % 60000000000) / 1000000000) + " s";
-    } else if (duration && duration / 60000000000 < 1) {
-
-      //If the test ran for less than a minute, display only seconds.
-      feature.duration = round(2, duration / 1000000000) + " s";
-    }
-    
-  })(features);
+  
+  durationCounter(features);
 
   var templateFile = options.template || defaultTemplate;
   var template = loadTemplate(templateFile);
@@ -142,6 +120,8 @@ CucumberHtmlReport.prototype.createReport = function() {
 
   });
 
+  console.log('Brain bug 01');
+
   var scenariosSummary = R.compose(
       R.filter(function (element) {
         return element.type === "scenario";
@@ -159,7 +139,99 @@ CucumberHtmlReport.prototype.createReport = function() {
   var logoExtension = options.logo.split(".").pop();
   var logo = "data:image/" + (logoExtension === "svg" ? "svg+xml" : logoExtension) + ";base64," + getDataUri(options.logo);
   
-  var screenshots = fs.readdirSync(options.screenshots).map(function (file) {
+  var screenshots = createScreenshot(options);
+
+  console.log('Brain bug 02');
+
+  var tags = mappingTags(features);
+
+  console.log('Brain bug 03');
+  
+  var tagsArray = createTagsArray(tags);
+  console.log('Brain bug 04');
+
+  var mustacheOptions = Object.assign(options, {
+    features: features,
+    featuresJson: JSON.stringify(R.pluck("name", scenariosSummary)),
+    stepsSummary: stepsSummary,
+    scenariosSummary: JSON.stringify(scenariosSummary),
+    stepsJson: JSON.stringify(stepsSummary),
+    scenarios: scenarios,
+    scenariosJson: JSON.stringify(scenarios),
+    summary: summary,
+    logo: logo,
+    screenshots: screenshots,
+    tags: tagsArray,
+    tagsJson: JSON.stringify(tagsArray),
+    image: mustacheImageFormatter,
+    duration: mustacheDurationFormatter
+  });
+
+  var html = Mustache.to_html(template, mustacheOptions);
+  console.log('Brain bug 05');
+  saveHTML(options.dest, options.name, html);
+  console.log("Report created successfully!");
+
+  return true;
+};
+
+function durationCounter(features){
+  R.map(function (feature) {
+      var duration = R.compose(
+        R.reduce(function (accumulator, current) {
+          return accumulator + current;
+        }, 0),
+        R.flatten(),
+        R.map(function (step) {
+          return step.result.duration ? step.result.duration : 0;
+        }),
+        R.flatten(),
+        R.map(function (element) {
+          return element.steps;
+        })
+      )(feature.elements);
+
+      if (duration && duration / 60000000000 >= 1) {
+
+        //If the test ran for more than a minute, also display minutes.
+        feature.duration = Math.trunc(duration / 60000000000) + " m " + round(2, (duration % 60000000000) / 1000000000) + " s";
+      } else if (duration && duration / 60000000000 < 1) {
+
+        //If the test ran for less than a minute, display only seconds.
+        feature.duration = round(2, duration / 1000000000) + " s";
+      }
+      
+  })(features);
+}
+
+function createTagsArray(tags){
+  return (function (tags) {
+    var array = [];
+    
+    for (var tag in tags) {
+      if (tags.hasOwnProperty(tag)) {
+        
+        //Converts the duration from nanoseconds to seconds and minutes (if any)
+        var duration = tags[tag].duration;
+        if (duration && duration / 60000000000 >= 1) {
+
+          //If the test ran for more than a minute, also display minutes.
+          tags[tag].duration = Math.trunc(duration / 60000000000) + " m " + round(2, (duration % 60000000000) / 1000000000) + " s";
+        } else if (duration && duration / 60000000000 < 1) {
+
+          //If the test ran for less than a minute, display only seconds.
+          tags[tag].duration = round(2, duration / 1000000000) + " s";
+        }
+        
+        array.push(tags[tag]);
+      }
+    }
+    return array;
+  })(tags);
+}
+
+function createScreenshot(options){
+  var newScreenshots = fs.readdirSync(options.screenshots).map(function (file) {
     if (file[0] === ".") {
       return undefined;
     }
@@ -174,7 +246,10 @@ CucumberHtmlReport.prototype.createReport = function() {
   }).filter(function (image) {
     return image;
   });
+  return newScreenshots;
+}
 
+function mappingTags(features) {
   var tags = {};
   features.map(function (feature) {
 
@@ -218,56 +293,9 @@ CucumberHtmlReport.prototype.createReport = function() {
         tags[tag].status = "failed";
       }
     })
-  });
-  
-  var tagsArray = (function (tags) {
-    var array = [];
-    
-    for (var tag in tags) {
-      if (tags.hasOwnProperty(tag)) {
-        
-        //Converts the duration from nanoseconds to seconds and minutes (if any)
-        var duration = tags[tag].duration;
-        if (duration && duration / 60000000000 >= 1) {
-
-          //If the test ran for more than a minute, also display minutes.
-          tags[tag].duration = Math.trunc(duration / 60000000000) + " m " + round(2, (duration % 60000000000) / 1000000000) + " s";
-        } else if (duration && duration / 60000000000 < 1) {
-
-          //If the test ran for less than a minute, display only seconds.
-          tags[tag].duration = round(2, duration / 1000000000) + " s";
-        }
-        
-        array.push(tags[tag]);
-      }
-    }
-    
-    return array;
-  })(tags);
-
-  var mustacheOptions = Object.assign(options, {
-    features: features,
-    featuresJson: JSON.stringify(R.pluck("name", scenariosSummary)),
-    stepsSummary: stepsSummary,
-    scenariosSummary: JSON.stringify(scenariosSummary),
-    stepsJson: JSON.stringify(stepsSummary),
-    scenarios: scenarios,
-    scenariosJson: JSON.stringify(scenarios),
-    summary: summary,
-    logo: logo,
-    screenshots: screenshots,
-    tags: tagsArray,
-    tagsJson: JSON.stringify(tagsArray),
-    image: mustacheImageFormatter,
-    duration: mustacheDurationFormatter
-  });
-
-  var html = Mustache.to_html(template, mustacheOptions);
-  saveHTML(options.dest, options.name, html);
-  console.log("Report created successfully!");
-
-  return true;
-};
+  }); 
+  return tags; 
+}
 
 function isValidStep(step) {
   return step.name !== undefined;

@@ -10,50 +10,48 @@ function templateBuilder(report) {
     this.template = './' + this.report.options.template  || './extended_template.html';
 
     this.checkOptions = function(options) {
+        console.log(options);
         // Make sure we have input file!
-        if (!fs.existsSync(options.source)){
+        if (!fs.existsSync(options.source) || typeof options.source === 'undefined'){
             console.error("Input file " + options.source + " does not exist! Aborting");
-            return false;
+            return "Source error";
         }
-
         // Make sure we have template file!
         if (options.hasOwnProperty('template') && !fs.existsSync(options.template)){
             console.error("Template file " + options.template + " does not exist! Aborting");
-            return false;
+            return "Template error";
         }
-
         // Create output directory if not exists
         if (!fs.existsSync(options.dest)) {
             Directory.mkdirpSync(options.dest);
             console.log("Created directory: %s", options.dest);
+            return "Directory error";
         }
-
         // Make sure we have a name defined
         if (typeof options.name === 'undefined'){
             console.error("Template name " + options.name + " does not valid! Aborting");
-            return false;
+            return "File name error";
         }
-
         return true;
     }
-
 
     this.renderTemplate = function() {
         var self = this;
         return new Promise(function (resolve, reject) {
             fs.readFile('./src/grid.html', 'utf8', function (err,data) {
-                if (err || !self.checkOptions(self.report.options)) {
-                    console.error(err);
-                    reject(err);
+                if (err) {
+                    reject('Error reading grid');
+                } else if(self.checkOptions(self.report.options) !== true) {
+                    reject(self.checkOptions(self.report.options));
                 } else {
                     fs.writeFile(self.template, data, 'utf8', function (err,data) {
-                        if (err) reject(err);
+                        if (err) reject('Error writing destination');
 
                         Promise.all([self.parseCss(), self.parseHtml(), self.parseJS()]).then(function(res){
                             self.createReport(self.report);
-                            //resolve(res);
+                            resolve('Promise success');
                         }, function(err){
-                            reject(err);
+                            reject('Promise all error');
                         });
                     });
                 }
@@ -61,13 +59,11 @@ function templateBuilder(report) {
         });
     }
 
-
-
     this.parseCss = function() {
         var self = this;
         return new Promise(function (resolve, reject) {
             fs.readFile('./src/styles.css', 'utf8', function (err,data) {
-                if (err) reject(err);
+                if (err) reject('Css parse failed');
 
                 replace({
                     regex: '{{cssData}}',
@@ -86,7 +82,7 @@ function templateBuilder(report) {
         var self = this;
         return new Promise(function (resolve, reject) {
             fs.readFile('./src/template.html', 'utf8', function (err,data) {   
-                if (err) reject(err);
+                if (err) reject('HTML parse failerd');
 
                 replace({
                     regex: '<main></main>',
@@ -125,7 +121,7 @@ function templateBuilder(report) {
                     resolve(jsData);
                 })
                 .on('error', function(err){
-                    reject(err);
+                    reject('JS parse failed');
                 });
         });
     }

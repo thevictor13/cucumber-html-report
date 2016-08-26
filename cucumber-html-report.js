@@ -135,7 +135,7 @@ CucumberHtmlReport.prototype.createReport = function() {
   var tagsArray = createTagsArray(tags);
   console.log('Brain bug 04');
 
-  var mustacheOptions = Object.assign(options, {
+  var mustacheOptions = Object.assign({}, options, {
     features: features,
     featuresJson: JSON.stringify(R.pluck("name", scenariosSummary)),
     stepsSummary: stepsSummary,

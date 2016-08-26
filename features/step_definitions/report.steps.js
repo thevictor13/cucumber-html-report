@@ -74,13 +74,7 @@ module.exports = function() {
   });
 
   this.Then(/^I should get a HTML report in the "([^"]*)" directory$/, function(dir, callback) {
-    var date 	= new Date;
-    var hour 	= date.getHours();
-    var year 	= date.getFullYear();
-    var month 	= date.getMonth();
-    var day 	= date.getDate();
-    //for the test, better to remove minutes and seconds from the index.js, to be sure filenames gonna match
-    var reportFile 	= path.join('./' + dir, 'report_'.concat(year, month, day, '_', hour, '.html'));
+    var reportFile 	= path.join('./' + dir, 'index.html');
     expect(fs.existsSync(reportFile)).to.equal(true);
     callback();
   });

@@ -17,7 +17,7 @@ function templateBuilder(report) {
             return "Source error";
         }
         // Make sure we have template file!
-        if (options.hasOwnProperty('template') && !fs.existsSync(options.template)){
+        if (!options.hasOwnProperty('template') || (options.hasOwnProperty('template') && !fs.existsSync(options.template))){
             console.error("Template file " + options.template + " does not exist! Aborting");
             return "Template error";
         }

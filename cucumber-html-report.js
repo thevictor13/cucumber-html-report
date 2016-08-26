@@ -36,6 +36,8 @@ var CucumberHtmlReport = module.exports = function(options) {
 CucumberHtmlReport.prototype.createReport = function() {
   var options = this.options;
 
+  console.log(options);
+
   console.log('Creating in progress....');
 
   var features = parseFeatures(options, loadCucumberReport(this.options.source));

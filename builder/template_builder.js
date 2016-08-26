@@ -9,17 +9,20 @@ function templateBuilder(report) {
     this.report = report || undefined;
     this.template = './' + this.report.options.template  || './extended_template.html';
 
+    var app = this;
+
     this.checkOptions = function(options) {
-        console.log(options);
         // Make sure we have input file!
         if (!fs.existsSync(options.source) || typeof options.source === 'undefined'){
             console.error("Input file " + options.source + " does not exist! Aborting");
             return "Source error";
         }
         // Make sure we have template file!
-        if (!options.hasOwnProperty('template') || (options.hasOwnProperty('template') && !fs.existsSync(options.template))){
+        if (options.hasOwnProperty('template') && !fs.existsSync(options.template)){
             console.error("Template file " + options.template + " does not exist! Aborting");
             return "Template error";
+        } else if (!options.hasOwnProperty('template')) {
+            this.report.options.template = './extended_template.html';
         }
         // Create output directory if not exists
         if (!fs.existsSync(options.dest)) {

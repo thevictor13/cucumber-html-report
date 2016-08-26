@@ -7,7 +7,7 @@ var fs        = require("fs");
 function templateBuilder(report) {
 
     this.report = report || undefined;
-    this.template = './' + this.report.options.template  || './extended_template.html';
+    this.template = this.report.options.template  || './extended_template.html';
 
     var app = this;
 

@@ -10,7 +10,7 @@ var
 var options = {};
 options.name = 'index.html'; 
 options.dest = './reports';
-options.template = 'extended_template.html';
+options.template = path.join('./extended_template.html');
 
 module.exports = function() {
 
@@ -53,7 +53,7 @@ module.exports = function() {
   });
 
   this.Given(/^a custom template is provided$/, function(callback) {
-    options.template = './extended_template.html';
+    options.template =  path.join('./extended_template.html');
     expect(options).to.have.property('template');
     callback();
   });
@@ -69,7 +69,7 @@ module.exports = function() {
   });
 
   this.Then(/^I should get a HTML report in the "([^"]*)" directory$/, function(dir, callback) {
-    var reportFile 	= path.join('./' + dir, 'index.html');
+    var reportFile 	= path.join('./' + dir, options.name);
     expect(fs.existsSync(reportFile)).to.equal(true);
     callback();
   });

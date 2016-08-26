@@ -35,17 +35,12 @@ var CucumberHtmlReport = module.exports = function(options) {
 
 CucumberHtmlReport.prototype.createReport = function() {
   var options = this.options;
-
-  console.log(options);
-  console.log('Creating in progress....');
-
   var features = parseFeatures(options, loadCucumberReport(this.options.source));
-  
+
   durationCounter(features);
 
   var templateFile = options.template || defaultTemplate;
   var template = loadTemplate(templateFile);
-
   var stepsSummary = [];
   var scenarios = [];
 
@@ -110,8 +105,6 @@ CucumberHtmlReport.prototype.createReport = function() {
 
   });
 
-  console.log('Brain bug 01');
-
   var scenariosSummary = R.compose(
       R.filter(function (element) {
         return element.type === "scenario";
@@ -126,14 +119,8 @@ CucumberHtmlReport.prototype.createReport = function() {
   //Replaces "OK" and "NOK" with "Passed" and "Failed".
   summary.status = summary.status === "OK" ? "passed" : "failed";
 
-  console.log('Brain bug 02');
-
-  var tags = mappingTags(features);
-
-  console.log('Brain bug 03');
-  
+  var tags = mappingTags(features);  
   var tagsArray = createTagsArray(tags);
-  console.log('Brain bug 04');
 
   var mustacheOptions = Object.assign({}, options, {
     features: features,
@@ -153,7 +140,6 @@ CucumberHtmlReport.prototype.createReport = function() {
   });
 
   var html = Mustache.to_html(template, mustacheOptions);
-  console.log('Brain bug 05');
   saveHTML(options.dest, options.name, html);
   console.log("Report created successfully!");
 

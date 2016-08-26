@@ -11,7 +11,7 @@ var hour 	= date.getHours();
 var year 	= date.getFullYear();
 var month 	= date.getMonth();
 var day 	= date.getDate();
-var name 	= "report_".concat(year, month, day, "_", hour, ".html");
+var name 	= "report_".concat(year, month, day, "_", hour, minutes, seconds, ".html");
 
 var options = {
 	source:     	"./cucumber_report.json",     	// source json

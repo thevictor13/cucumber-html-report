@@ -62,14 +62,9 @@ module.exports = function() {
     var report 		= new Report(options);
     var template 	= new templateBuilder(report);
     template.renderTemplate().then(function success(res){
-      console.log(res);
       callback();
     }, function error(err){
-      console.log(err);
       callback();
-    }).catch(function(err){
-        console.log(err);
-        callback();
     });
   });
 

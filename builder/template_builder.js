@@ -24,16 +24,14 @@ function templateBuilder(report) {
         } else if (!options.hasOwnProperty('template')) {
             this.report.options.template = './extended_template.html';
         }
-        // Create output directory if not exists
-        if (!fs.existsSync(options.dest)) {
-            Directory.mkdirpSync(options.dest);
-            console.log("Created directory: %s", options.dest);
-            return "Directory error";
-        }
         // Make sure we have a name defined
         if (typeof options.name === 'undefined'){
             console.error("Template name " + options.name + " does not valid! Aborting");
             return "File name error";
+        }
+
+        if (!options.hasOwnProperty('dest') || typeof options.dest === 'undefined') {
+            this.report.options.dest = "./reports";
         }
 
         if (!options.hasOwnProperty('logo') || options.logo.length < 3) {
@@ -47,31 +45,62 @@ function templateBuilder(report) {
         return true;
     }
 
-    this.renderTemplate = function() {
+    this.init = function () {
+        var self = this;
+        return new Promise(function (resolve, reject) {
+            if (self.checkOptions(self.report.options) !== true) {
+                console.error('Config error');
+                reject('Config error');
+            } else {
+                self.createDir(self.report.options).then(function(res){
+                    self.renderTemplate();
+                }).then(function(res){
+                    self.createReport(self.report);
+                }).catch(function(err){
+                    reject(err);
+                }).finally(function(){
+                    resolve('Done');
+                });
+            }
+        });
+ 
+    }
+
+    this.renderTemplate = function () {
         var self = this;
         return new Promise(function (resolve, reject) {
             fs.readFile('./src/grid.html', 'utf8', function (err,data) {
-                if (err) {
-                    reject('Error reading grid');
-                } else if(self.checkOptions(self.report.options) !== true) {
-                    reject(self.checkOptions(self.report.options));
-                } else {
-                    fs.writeFile(self.template, data, 'utf8', function (err,data) {
-                        if (err) reject('Error writing destination');
+                if (err) reject('Error reading grid');
 
-                        Promise.all([self.parseCss(), self.parseHtml(), self.parseJS()]).then(function(res){
-                            self.createReport(self.report);
-                            resolve('Promise success');
-                        }, function(err){
-                            reject('Promise all error');
-                        });
+                fs.writeFile(self.template, data, 'utf8', function (err,data) {
+                    if (err) reject('Error writing destination');
+
+                    Promise.all([self.parseCss(), self.parseHtml(), self.parseJS()]).then(function(res){
+                        resolve('Promise success');
+                    }, function(err){
+                        reject('Promise all error');
                     });
-                }
+                });                
             });
         });
     }
 
-    this.parseCss = function() {
+
+    this.createDir = function (options) {
+        var self = this;
+        return new Promise(function (resolve, reject) {
+            // Create output directory if not exists
+            if (!fs.existsSync(options.dest)) {
+                Directory.mkdirpSync(options.dest);
+                console.log(options.dest);
+                resolve("Created directory: %s", options.dest);
+            } else {
+                resolve("Directory already exists: %s", options.dest);
+            }
+        });
+    } 
+
+    this.parseCss = function () {
         var self = this;
         return new Promise(function (resolve, reject) {
             fs.readFile('./src/styles.css', 'utf8', function (err,data) {
@@ -90,7 +119,7 @@ function templateBuilder(report) {
         });
     }
 
-    this.parseHtml = function() {
+    this.parseHtml = function () {
         var self = this;
         return new Promise(function (resolve, reject) {
             fs.readFile('./src/template.html', 'utf8', function (err,data) {   
@@ -109,7 +138,7 @@ function templateBuilder(report) {
         });
     }
 
-    this.parseJS = function() {
+    this.parseJS = function () {
         var self = this;
         return new Promise(function (resolve, reject) {
 

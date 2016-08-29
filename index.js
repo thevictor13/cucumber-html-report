@@ -26,4 +26,5 @@ var options = {
 
 var report 		= new Report(options);
 var template 	= new templateBuilder(report);
-template.renderTemplate();
+
+template.init();

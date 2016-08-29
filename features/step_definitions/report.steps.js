@@ -61,7 +61,7 @@ module.exports = function() {
   this.When(/^I run the report generator$/, function(callback) {    
     var report 		= new Report(options);
     var template 	= new templateBuilder(report);
-    template.renderTemplate().then(function success(res){
+    template.init().then(function success(res){
       callback();
     }, function error(err){
       callback();

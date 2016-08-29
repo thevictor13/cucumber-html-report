@@ -132,6 +132,7 @@ CucumberHtmlReport.prototype.createReport = function() {
     scenariosJson: JSON.stringify(scenarios),
     summary: summary,
     logo: encodeLogo(options.logo),
+    charts: displayCharts(options),
     screenshots: encodeScreenshot(options),
     tags: tagsArray,
     tagsJson: JSON.stringify(tagsArray),
@@ -281,6 +282,14 @@ function mappingTags(features) {
     })
   }); 
   return tags; 
+}
+
+function displayCharts(options) {
+  if(!options.displayCharts) {
+    return undefined;
+  } else {
+    return true;
+  }
 }
 
 function isValidStep(step) {

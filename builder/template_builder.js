@@ -42,6 +42,10 @@ function templateBuilder(report) {
             this.report.options.screenshots = false;
         }
 
+        if (!options.hasOwnProperty('displayCharts') || typeof options.displayCharts === 'undefined') {
+            this.report.options.displayCharts = true;
+        }
+
         return true;
     }
 

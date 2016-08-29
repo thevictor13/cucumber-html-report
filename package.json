@@ -23,7 +23,8 @@
     "report": "./node_modules/.bin/cucumber.js features -f json:cucumber_report.json",
     "report-win": "./node_modules/.bin/cucumber-js features -f json:cucumber_report.json",
     "test": "npm run cucumber",
-    "test-win": "npm run cucumber-win"
+    "test-win": "npm run cucumber-win",
+    "build": " ./node_modules/.bin/webpack --display-error-details --optimize-minimize"
   },
   "keywords": [
     "cucumber",
@@ -33,9 +34,13 @@
   "license": "MIT",
   "dependencies": {
     "atob": "^2.0.3",
-    "mustache": "^2.2.0",
+    "d3": "^3.5.5",
     "object-assign": "^4.1.0",
-    "slug": "^0.9.1"
+    "mustache": "^2.2.1",
+    "ramda": "^0.21.0",
+    "replace": "^0.3.0",
+    "slug": "^0.9.1",
+    "webpack": "^1.13.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",

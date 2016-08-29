@@ -4,9 +4,13 @@ var
   path = require('path'),
   expect = require('chai').expect,
   sinon = require('sinon'),
-  Report = require('../../index');
+  Report = require("../../cucumber-html-report.js"),
+  templateBuilder	= require('../../builder/template_builder');
 
 var options = {};
+options.name = 'index.html'; 
+options.dest = './reports';
+options.template = path.join('./extended_template.html');
 
 module.exports = function() {
 
@@ -38,6 +42,7 @@ module.exports = function() {
   });
 
   this.Given(/^no template is provided$/, function(callback) {
+    if (options.hasOwnProperty('template')) { delete options.template }
     expect(options).to.not.have.property('template');
     callback();
   });
@@ -48,18 +53,23 @@ module.exports = function() {
   });
 
   this.Given(/^a custom template is provided$/, function(callback) {
-    options.template = './templates/template2.html';
+    options.template =  path.join('./extended_template.html');
     expect(options).to.have.property('template');
     callback();
   });
 
-  this.When(/^I run the report generator$/, function(callback) {
-    new Report(options).createReport();
-    callback();
+  this.When(/^I run the report generator$/, function(callback) {    
+    var report 		= new Report(options);
+    var template 	= new templateBuilder(report);
+    template.init().then(function success(res){
+      callback();
+    }, function error(err){
+      callback();
+    });
   });
 
   this.Then(/^I should get a HTML report in the "([^"]*)" directory$/, function(dir, callback) {
-    var reportFile = path.join('./' + dir, 'index.html');
+    var reportFile 	= path.join('./' + dir, options.name);
     expect(fs.existsSync(reportFile)).to.equal(true);
     callback();
   });

@@ -202,21 +202,23 @@ function createTagsArray(tags){
 }
 
 function encodeScreenshot(options){
-  return fs.readdirSync(options.screenshots).map(function (file) {
-    if (file[0] === ".") {
-      return undefined;
-    }
+  if(!options.screenshots) {
+    return undefined;
+  } else {
+    return fs.readdirSync(options.screenshots).map(function (file) {
+      if (file[0] === ".") { return undefined; };
 
-    var name = file.split(".");
-    var extension = name.pop();
-    extension === "svg" ? extension = "svg+xml" : false;
-    return {
-      name: name.join(".").replace(/\s/, "_"),
-      url: "data:image/" + extension + ";base64," + getDataUri(options.screenshots + "/" + file)
-    };
-  }).filter(function (image) {
-    return image;
-  });
+      var name = file.split(".");
+      var extension = name.pop();
+      extension === "svg" ? extension = "svg+xml" : false;
+      return {
+        name: name.join(".").replace(/\s/, "_"),
+        url: "data:image/" + extension + ";base64," + getDataUri(options.screenshots + "/" + file)
+      };
+    }).filter(function (image) {
+      return image;
+    });
+  }
 }
 
 function stepDurationConverter(step){

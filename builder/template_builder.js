@@ -38,8 +38,8 @@ function templateBuilder(report) {
             this.report.options.logo = './logos/cucumber-logo.svg';
         }
 
-        if (!options.hasOwnProperty('screenshots')) {
-            this.report.options.screenshots = './screenshots';
+        if (!options.hasOwnProperty('screenshots') || typeof options.screenshots === 'undefined') {
+            this.report.options.screenshots = false;
         }
 
         return true;

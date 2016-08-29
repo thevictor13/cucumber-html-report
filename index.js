@@ -21,7 +21,7 @@ var options = {
 	title:      	"Cucumber Report",            	// Title for default template. (default is Cucumber Report)
 	component:  	"My Component",               	// Subtitle for default template. (default is empty)
 	logo:       	"./logos/cucumber-logo.svg",  	// Path to the displayed logo.
-	screenshots:    "./screenshots"					// Path to the directory of screenshots.
+	screenshots:    "./screenshots"					// Path to the directory of screenshots. Optional.
 };
 
 var report 		= new Report(options);

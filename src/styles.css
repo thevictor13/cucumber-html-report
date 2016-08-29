@@ -373,11 +373,58 @@ tr td.skipped,
 }
 
 @media print {
+
+	.feature-navigator {
+		position: relative;
+		height: auto;
+		width: 100%;
+		float: none;
+		display:block;
+		clear: both;
+	}
+
+	.report-container {
+		margin-top: 20px;
+		margin-left:0;
+		width: 100%;
+		float: none;
+	}
+
+	.feature-navigator .logo {
+		max-height:72px;
+		display:block;
+	}
+
+	.feature-navigator h1, .feature-navigator h2 {
+		display: block;
+		text-align:center;
+	}
+
+	.feature-navigator h2 {
+		font-size:18px;
+	}
+
+	.feature-navigator .summary {
+		border-top: 3px solid #333;
+		border-bottom: 3px solid #333;
+		display: table;
+		width: 100%;
+	}
+
+	.feature-navigator .summary > li {
+		display: table-cell;
+		text-align: center;
+	}
+
 	.print-button {
 		display: none;
 	}
 
 	.hidden.failed {
 		display: table-row;
+	}
+
+	.print-hide {
+		display: none !important;
 	}
 }

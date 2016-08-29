@@ -6,7 +6,7 @@
     <title>{{title}}</title>
   </head>
   <body>
-
+    
     <aside class="feature-navigator">
       <header class="header">
         <button class="print-button" type="button" onclick="window.scrollTo(0, 0); window.print();">Print Report</button>
@@ -22,15 +22,15 @@
         <li>{{summary.totalFeatures}} Features</li>
         <li>{{summary.totalScenarios}} Scenarios</li>
         <li>{{steps.all}} Steps</li>
-        <li class="passed">{{summary.scenariosPassed}} Passed scenarios</li>
-        <li class="failed">{{summary.scenariosFailed}} Failing scenarios</li>
-        <li class="passed">{{steps.passed}} Passed steps</li>
-        <li class="failed">{{steps.failed}} Failing steps</li>
-        <li class="skipped">{{steps.skipped}} Skipped steps</li>
+        <li class="passed print-hide">{{summary.scenariosPassed}} Passed scenarios</li>
+        <li class="failed print-hide">{{summary.scenariosFailed}} Failing scenarios</li>
+        <li class="passed print-hide">{{steps.passed}} Passed steps</li>
+        <li class="failed print-hide">{{steps.failed}} Failing steps</li>
+        <li class="skipped print-hide">{{steps.skipped}} Skipped steps</li>
         <li>Status <span class="{{summary.status}}">{{summary.status}}</span></li>
       </ul>
 
-      <ul class="feature-list">
+      <ul class="feature-list print-hide">
         {{#features}}
         <li class="{{status}}">
           <a href="#F_{{id}}" title="{{name}}">{{name}}</a>
@@ -89,19 +89,20 @@
       <section class="report" id="F_{{id}}">
         <h2>{{keyword}}: {{name}} <span class="tags">{{tags}}</span></h2>
 
+        {{#charts}}
         <div class="chart-body">
           <div class="widget">
             <div class="chart-header steps-donut-chart"></div>
             <div id="stepsChart" data-chart="{{stepsJson}}" data-index="{{index}}" class="chart-container"></div>
           </div>
         </div>
-
         <div class="chart-body">
           <div class="widget">
             <div class="chart-header scenarios-donut-chart"></div>
             <div id="scenariosChart" data-chart="{{scenariosJson}}" data-index="{{index}}" class="chart-container"></div>
           </div>
         </div>
+        {{/charts}}
 
         <p class="filename">{{uri}}</p>
 
@@ -114,12 +115,14 @@
           {{/tags}}
         </h3>
 
+        {{#charts}}
         <div class="chart-body">
           <div class="widget">
             <div class="chart-header bar-chart"></div>
             <div id="stepsBarChart" data-chart="{{scenariosSummary}}" class="chart-container"></div>
           </div>
         </div>
+        {{/charts}}
 
         <table>
           <tr class="header-row">
@@ -169,11 +172,13 @@
       <section class="report">
         <h2>Tags statistics</h2>
 
+        {{#charts}}
         <div class="chart-body">
           <div class="widget">
             <div id="tagsBarChart" data-chart="{{tagsJson}}" class="chart-container"></div>
           </div>
         </div>
+        {{/charts}}
 
         <div class="summary-table">
           <table>

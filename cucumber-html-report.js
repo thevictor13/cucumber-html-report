@@ -368,13 +368,16 @@ function saveEmbeddedMetadata(destPath, element, steps) {
   steps = steps || [];
   steps.forEach(function(step) {
     if (step.embeddings) {
+      var imgCount = 1;
       step.embeddings.forEach(function(embedding) {
         if (embedding.mime_type === "image/png") {
-          var imageName = createFileName(element.name + "-" + element.line) + ".png";
+          var imageName = createFileName(element.name + "-" + element.line + "-" + imgCount) + ".png";
           var fileName = path.join(destPath, imageName);
           // Save imageName on element so we use it in HTML
-          element.imageName = imageName;
+          element.imageName = element.imageName || [];
+          element.imageName.push(imageName);
           writeImage(fileName, embedding.data);
+          ++imgCount;
         }
         else if (embedding.mime_type === "text/plain") {
           // Save plain text on element so we use it in HTML
@@ -390,12 +393,16 @@ function saveEmbeddedMetadata(destPath, element, steps) {
 
 function mustacheImageFormatter() {
   return function (text, render) {
+    var imgResult = "";
     var src = render(text);
-    if (src.length > 0) {
-      return "<img src=" + src + "/>";
-    } else {
-      return "";
+    var imgList = src.split(",");
+    if (src.length > 0 && imgList.length > 0) {
+      // Loop through images
+      for (var i in imgList) {
+        imgResult += "<img src=" + imgList[i] + "/>";
+      }
     }
+    return imgResult;
   };
 }
 

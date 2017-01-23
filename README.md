@@ -13,19 +13,24 @@ and values of any randomly generated data.
 ## Very easy to use
 
 ```javascript
-var Report = require('cucumber-html-report');
+var Report = require("./cucumber-html-report.js");            //Custom report generator file.
+var templateBuilder	= require('./builder/template_builder');  //Default template generator file
 
 var options = {
-  source:    './cucumber_report.json', // source json
-  dest:      './reports',          // target directory (will create if not exists)
-  name:      'report.html',        // report file name (will be index.html if not exists)
-  template:  'mytemplate.html',    // your custom mustache template (uses default if not specified)
-  title:     'Cucumber Report',    // Title for default template. (default is Cucumber Report)
-  component: 'My Component',       // Subtitle for default template. (default is empty)
+  source:         './cucumber_report.json',         // source json
+  dest:           './reports',                      // target directory (will create if not exists)
+  name:           'report.html',                    // report file name (will be index.html if not exists)
+  template:       'mytemplate.html',                // your custom mustache template (uses default if not specified)
+  title:          'Cucumber Report',                // Title for default template. (default is Cucumber Report)
+  component:      'My Component',                   // Subtitle for default template. (default is empty)
+  logo:           './logos/cucumber-logo.svg',      // Path to the displayed logo.
+  screenshots:    './screenshots',                  // Path to the directory of screenshots. Optional.
+  displayCharts:  true                              // Display D3,js charts related to the report json file. Optional. Default value is true.
 };
 
 var report = new Report(options);
-report.createReport();
+var template = new templateBuilder(report);
+template.init();
 ```
 
 ## Contribute

@@ -1,10 +1,22 @@
-var CucumberHtmlReport = require('./index');
-var report = new CucumberHtmlReport({
-  source: './cucumber_report.json',
-  dest: './reports2',
-  // name: 'report.html',
-  // template: __dirname + '/templates/template2.html'
-  title: 'Cucumber Test Report',
-  component: 'System under test'
-});
-report.createReport();
+var report = require('./index');
+report.create({
+    // source json
+    source: "./testdata/big_error_and_screenshot.json",
+    // target directory (will create if not exists)
+    dest: "./reports",
+    // report file name (will be index.html if not exists)
+    name: 'index.html',
+    // your custom mustache template (uses default if not specified)
+    // template:   	"./custom_template.html",
+    // Title for default template. (default is Cucumber Report)
+    title: "Test Report",
+    // Subtitle for default template. (default is empty)
+    component: "Some Awesome Component",
+    // Path to the displayed logo.
+    logo: "./logos/cucumber-logo.svg",
+    // Path to the directory of screenshots. Optional.
+    screenshots: "./screenshots"
+  })
+  .then(console.log)
+  .catch(console.error);
+

@@ -1,0 +1,70 @@
+<script>
+  (function() {
+    "use strict";
+
+    // Thanks to http://stackoverflow.com/questions/400212/how-do-i-copy-to-the-clipboard-in-javascript/30810322#30810322
+    function copyTextToClipboard(text) {
+      // Puts the supplied text into a hidden text area to select it and copy it the clipboard
+      var textArea = document.createElement("textarea");
+      textArea.class = "copy-to-clipboard";
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand("copy");
+      } finally {
+        document.body.removeChild(textArea);
+      }
+    }
+
+    var failed = document.getElementsByClassName("failed");
+    for (var i = 0; i < failed.length; i += 1) {
+      if (failed[i].className === "failed" && !failed[i].classList.contains("hidden")) {
+        failed[i].addEventListener("click", (function(i) {
+          return function() {
+            if (failed[i].nextElementSibling.classList.contains("hidden")) {
+              failed[i].nextElementSibling.classList.remove("hidden");
+            } else {
+              failed[i].nextElementSibling.classList.add("hidden");
+            }
+            copyTextToClipboard(failed[i].nextElementSibling.textContent);
+          }
+        })(i));
+      }
+      else if (failed[i].classList.contains("hidden")) {
+        var children = failed[i].children;
+        Array.prototype.filter.call(children, function(child) {
+          return child.classList.contains("trace");
+        })[0].addEventListener("click", (function(i) {
+          return function() {
+            if (failed[i].classList.contains("hidden")) {
+              failed[i].classList.remove("hidden");
+            } else {
+              failed[i].classList.add("hidden");
+            }
+          }
+        })(i));
+      }
+    }
+  })(window);
+
+  /**
+   * Rouds a number to the supplied decimals. Only makes sense for floats!
+   * @param number The number to round
+   * @param decimals The maximum number of decimals expected.
+   * @returns {number} The rounded number. Always returns a float!
+   */
+  var round = function(number, decimals) {
+    return Math.round(number * Math.pow(10, decimals)) / parseFloat(Math.pow(10, decimals));
+  };
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var screenshotLinks = document.getElementsByClassName("screenshot-link");
+    Array.prototype.forEach.call(screenshotLinks, function(failure) {
+      var index = failure.getAttribute("data-index");
+      var href = JSON.parse(failure.getAttribute("data-features"))[index].replace(/\s/g, "_");
+      failure.innerHTML = "<a href='#" + href + "'>Screenshot</a>"
+    });
+  });
+</script>

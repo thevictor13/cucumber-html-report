@@ -8,7 +8,7 @@ useful for showing screenshots from Protractor for example. Plain text embedding
 included in the HTML, useful for including additional information such as environment details
 and values of any randomly generated data.
 
-![](http://www.pharatropic.eu/images/3a84dd33ba7fab98dc62cc272a38258f.jpg)
+![](http://www.pharatropic.eu/images/2f0469eec0559d908ae7a1be7a61c5d8.png)
 
 ## New Promise-based API (Breaking changes!)
 

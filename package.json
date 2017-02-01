@@ -1,12 +1,12 @@
 {
   "name": "cucumber-html-report",
-  "version": "0.4.5",
-  "description": "Convert cucumber reports from json to HTML using Mustache templates",
+  "version": "0.5.1",
+  "description": "Convert cucumber json reports to a pretty html report.",
   "homepage": "https://github.com/leinonen/cucumber-html-report",
   "author": {
     "name": "Peter Leinonen",
     "email": "peter@leinonen.se",
-    "url": "leinonen.se"
+    "url": "http://leinonen.se"
   },
   "repository": {
     "type": "git",
@@ -17,14 +17,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "unit": "./node_modules/.bin/mocha --reporter spec",
-    "cucumber": "./node_modules/.bin/cucumber.js features",
-    "cucumber-win": "./node_modules/.bin/cucumber-js features",
-    "report": "./node_modules/.bin/cucumber.js features -f json:cucumber_report.json",
-    "report-win": "./node_modules/.bin/cucumber-js features -f json:cucumber_report.json",
-    "test": "npm run cucumber",
-    "test-win": "npm run cucumber-win",
-    "build": " ./node_modules/.bin/webpack --display-error-details --optimize-minimize"
+    "test": "mocha lib/*.spec.js",
+    "coverage": "istanbul cover --report html node_modules/.bin/_mocha -- -- -u exports -R spec lib/**/*"
   },
   "keywords": [
     "cucumber",
@@ -34,18 +28,14 @@
   "license": "MIT",
   "dependencies": {
     "atob": "^2.0.3",
-    "d3": "^3.5.5",
+    "mustache": "^2.3.0",
     "object-assign": "^4.1.0",
-    "mustache": "^2.2.1",
-    "ramda": "^0.21.0",
-    "replace": "^0.3.0",
-    "slug": "^0.9.1",
-    "webpack": "^1.13.1"
+    "ramda": "^0.23.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "cucumber": "^1.0.0",
-    "mocha": "^2.5.3",
-    "sinon": "^1.17.4"
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7"
   }
 }

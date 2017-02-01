@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+    <title>Cucumber Report</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<main class="report-container">
+
+    {{#features}}
+    <section class="report" id="F_{{id}}">
+        <h2>{{keyword}}: {{name}} <span class="tags">{{tags}}</span></h2>
+
+        <p class="filename">{{uri}}</p>
+
+        <p class="story">{{description}}</p>
+        {{#elements}}
+        <h3 id="S_{{id}}">
+            {{keyword}}: {{name}}
+            {{#tags}}
+            <span class="scenario-tag">{{name}}</span>
+            {{/tags}}
+        </h3>
+
+        <table>
+            <tr class="header-row">
+                <th style="width: 100px;">Condition</th>
+                <th>Step</th>
+                <th style="width: 100px;">Line</th>
+                <th class="duration" style="width: 100px;">Duration</th>
+                <th style="width: 100px;">Status</th>
+            </tr>
+
+            {{#steps}}
+            <tr class="{{result.status}}">
+                <td>{{keyword}}</td>
+                <td>
+                    {{name}}
+                    <table class="datatable">
+                        <!-- {{#rows}} -->
+                        <tr>
+                            <!-- {{#cells}} -->
+                            <td>{{.}}</td>
+                            <!-- {{/cells}} -->
+                        </tr>
+                        <!-- {{/rows}} -->
+                    </table>
+                </td>
+                <td>{{line}}</td>
+                <td class="duration">{{#duration}}{{result.convertedDuration}}{{/duration}}</td>
+                <td class="status">{{result.status}}</td>
+            </tr>
+
+            <tr class="hidden {{result.status}}">
+                <td class="trace" colspan="4">
+                    <pre>{{result.error_message}}</pre>
+                </td>
+                <td class="screenshot-link" data-features="{{featuresJson}}" data-index="{{index}}"></td>
+            </tr>
+            {{/steps}}
+
+        </table>
+
+        {{/elements}}
+    </section>
+    {{/features}}
+
+</main>
+
+</body>
+</html>

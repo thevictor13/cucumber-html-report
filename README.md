@@ -2,43 +2,40 @@
 
 # cucumber-html-report
 
-Create HTML reports from cucumber json report files. Uses mustache to transform json to HTML.
+Create pretty HTML reports from cucumber json report files. Uses mustache templates to transform json to HTML.
 Also writes embeddings (base64 encoded PNG images) to disk and includes them in the HTML, 
 useful for showing screenshots from Protractor for example. Plain text embeddings are also
 included in the HTML, useful for including additional information such as environment details
 and values of any randomly generated data.
 
-![](http://www.pharatropic.eu/images/3a84dd33ba7fab98dc62cc272a38258f.jpg)
+![](http://www.pharatropic.eu/images/2f0469eec0559d908ae7a1be7a61c5d8.png)
 
-## Very easy to use
+## New Promise-based API (Breaking changes!)
 
 ```javascript
-var Report = require("./cucumber-html-report.js");            //Custom report generator file.
-var templateBuilder	= require('./builder/template_builder');  //Default template generator file
-
-var options = {
-  source:         './cucumber_report.json',         // source json
-  dest:           './reports',                      // target directory (will create if not exists)
-  name:           'report.html',                    // report file name (will be index.html if not exists)
-  template:       'mytemplate.html',                // your custom mustache template (uses default if not specified)
-  title:          'Cucumber Report',                // Title for default template. (default is Cucumber Report)
-  component:      'My Component',                   // Subtitle for default template. (default is empty)
-  logo:           './logos/cucumber-logo.svg',      // Path to the displayed logo.
-  screenshots:    './screenshots',                  // Path to the directory of screenshots. Optional.
-  displayCharts:  true                              // Display D3,js charts related to the report json file. Optional. Default value is true.
-};
-
-var report = new Report(options);
-var template = new templateBuilder(report);
-template.init();
+var report = require("cucumber-html-report");
+report.create({
+  source:       './cucumber_report.json',      // source json
+  dest:         './reports',                   // target directory (will create if not exists)
+  name:         'report.html',                 // report file name (will be index.html if not exists)
+  template:     'mytemplate.html',             // your custom mustache template (uses default if not specified)
+  title:        'Cucumber Report',             // Title for default template. (default is Cucumber Report)
+  component:    'My Component',                // Subtitle for default template. (default is empty)
+  logo:         './logos/cucumber-logo.svg',   // Path to the displayed logo.
+  screenshots:  './screenshots',               // Path to the directory of screenshots. Optional.
+})
+.then(console.log)
+.catch(console.error);
 ```
 
-## Contribute
-You can contribute to this project by submitting a PR.
+## Goals
+Keep it simple, lightweight, robust and tested.
+Keep dependencies to a bare minimum.
+Cover most common usecases...
 
-### TODO
-* Refactor code into smaller modules
-* Write all tests using cucumber! :)
+## Contribute
+Contributions are always welcome. Just submit a Pull Request.
 
 # Author
 Written by Peter Leinonen 2016, with help of contributors. Thanks!
+

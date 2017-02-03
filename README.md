@@ -1,4 +1,5 @@
 ![alt text](https://travis-ci.org/leinonen/cucumber-html-report.svg?branch=master "Build status")
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
 
 # cucumber-html-report
 

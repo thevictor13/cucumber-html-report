@@ -1,6 +1,6 @@
 {
   "name": "cucumber-html-report",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Convert cucumber json reports to a pretty html report.",
   "homepage": "https://github.com/leinonen/cucumber-html-report",
   "author": {
@@ -15,11 +15,13 @@
   "bugs": {
     "url": "https://github.com/leinonen/cucumber-html-report/issues"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "npm run lint && mocha lib/*.spec.js",
-    "lint": "eslint index.js lib/*.js --ignore-pattern node_modules",
-    "coverage": "istanbul cover --report html node_modules/.bin/_mocha -- -- -u exports -R spec lib/**/*"
+    "test": "npm run lint && mocha src/*.spec.js",
+    "lint": "eslint index.js src/*.js --ignore-pattern node_modules",
+    "babel": "babel -d lib src/",
+    "prepublish": "babel -d lib src/",
+    "coverage": "istanbul cover --report html node_modules/.bin/_mocha -- -- -u exports -R spec src/**/*"
   },
   "keywords": [
     "cucumber",
@@ -34,14 +36,16 @@
     "ramda": "^0.23.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
     "chai": "^3.5.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
-    "sinon": "^1.17.7",
     "eslint": "^3.14.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-mocha": "^4.8.0",
     "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1"
+    "eslint-plugin-standard": "^2.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7"
   }
 }

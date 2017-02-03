@@ -8,6 +8,9 @@ pids
 *.pid
 *.seed
 
+# Babel output
+lib
+
 # Coverage directory used by tools like istanbul
 coverage
 

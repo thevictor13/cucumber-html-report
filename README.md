@@ -11,10 +11,10 @@ and values of any randomly generated data.
 
 ![](http://www.pharatropic.eu/images/2f0469eec0559d908ae7a1be7a61c5d8.png)
 
-## New Promise-based API (Breaking changes!)
+## New Promise-based API
 
 ```javascript
-var report = require("cucumber-html-report");
+const report = require('cucumber-html-report');
 report.create({
   source:       './cucumber_report.json',      // source json
   dest:         './reports',                   // target directory (will create if not exists)

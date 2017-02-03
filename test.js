@@ -1,5 +1,5 @@
-var report = require('./index')
-var opts = {
+const report = require('./lib/index')
+const opts = {
   // source json
   source: './testdata/big_error_and_screenshot.json',
   // target directory (will create if not exists)

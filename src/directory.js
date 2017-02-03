@@ -1,5 +1,7 @@
-var fs = require('fs')
-var path = require('path')
+'use strict'
+
+const fs = require('fs')
+const path = require('path')
 
 // Shamelessly stolen from stackoverflow..
 function mkdirSync (path) {
@@ -12,9 +14,9 @@ function mkdirSync (path) {
   }
 }
 
-exports.mkdirpSync = function (dirpath) {
-  var parts = dirpath.split('/') // path.sep
-  for (var i = 1; i <= parts.length; i++) {
+exports.mkdirpSync = (dirpath) => {
+  const parts = dirpath.split('/') // path.sep
+  for (let i = 1; i <= parts.length; i++) {
     mkdirSync(path.join.apply(null, parts.slice(0, i)))
   }
 }

@@ -1,18 +1,20 @@
-var fs = require('fs')
-var path = require('path')
-var atob = require('atob')
-var Mustache = require('mustache')
-var Directory = require('./directory')
-var Summary = require('./summary')
-var Template = require('./template')
-var R = require('ramda')
+'use strict'
+
+const fs = require('fs')
+const path = require('path')
+const atob = require('atob')
+const Mustache = require('mustache')
+const Directory = require('./directory')
+const Summary = require('./summary')
+const Template = require('./template')
+const R = require('ramda')
 
 if (!Object.assign) {
   Object.assign = require('object-assign')
 }
 
 exports.validate = function (options) {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     if (!fs.existsSync(options.source) || typeof options.source === 'undefined') {
       reject('Input file ' + options.source + ' does not exist! Aborting')
     }
@@ -42,7 +44,7 @@ exports.validate = function (options) {
 }
 
 exports.createDirectory = function (options) {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     // Create output directory if not exists
     if (!fs.existsSync(options.dest)) {
       Directory.mkdirpSync(options.dest)
@@ -55,10 +57,10 @@ exports.createDirectory = function (options) {
 }
 
 exports.writeReport = function (mustacheOptions) {
-  return new Promise(function (resolve, reject) {
-    var template = Template.load(mustacheOptions.template || Template.defaultTemplate)
-    var partials = mustacheOptions.template ? {} : Template.getTemplatePartials()
-    var html = Mustache.render(template, mustacheOptions, partials)
+  return new Promise((resolve, reject) => {
+    const template = Template.load(mustacheOptions.template || Template.defaultTemplate)
+    const partials = mustacheOptions.template ? {} : Template.getTemplatePartials()
+    const html = Mustache.render(template, mustacheOptions, partials)
 
     writeHTML(mustacheOptions.dest, mustacheOptions.name, html)
     resolve('Report created successfully!')
@@ -71,24 +73,19 @@ exports.writeReport = function (mustacheOptions) {
  * @returns {Promise}
  */
 exports.createReport = function (options) {
-  var features = parseFeatures(options, loadCucumberJson(options.source))
+  let features = parseFeatures(options, loadCucumberJson(options.source))
+  let stepsSummary = []
+  let scenarios = []
 
   durationCounter(features)
 
-  var stepsSummary = []
-  var scenarios = []
-
   // Extracts steps from the features.
-  features.map(function (feature, index) {
+  features.map((feature, index) => {
     feature.index = index
-    var steps = R.compose(
+    let steps = R.compose(
       R.flatten(),
-      R.map(function (scenario) {
-        return scenario.steps
-      }),
-      R.filter(function (element) {
-        return element.type === 'scenario'
-      })
+      R.map(scenario => scenario.steps),
+      R.filter(element => element.type === 'scenario')
     )(feature.elements)
 
     stepsSummary.push({
@@ -99,7 +96,7 @@ exports.createReport = function (options) {
     })
 
     // Counts the steps based on their status.
-    steps.map(function (step) {
+    steps.map(step => {
       switch (step.result.status) {
         case 'passed':
           stepsSummary[index].all++
@@ -124,38 +121,27 @@ exports.createReport = function (options) {
     })
 
     R.compose(
-      R.map(function (status) {
+      R.map(status => {
         scenarios[index].all++
         scenarios[index][status]++
       }),
       R.flatten(),
-      R.map(function (scenario) {
-        return scenario.status
-      }),
-      R.filter(function (element) {
-        return element.type === 'scenario'
-      })
+      R.map(scenario => scenario.status),
+      R.filter(element => element.type === 'scenario')
     )(feature.elements)
   })
 
-  var scenariosSummary = R.compose(
-    R.filter(function (element) {
-      return element.type === 'scenario'
-    }),
+  let scenariosSummary = R.compose(
+    R.filter(element => element.type === 'scenario'),
     R.flatten(),
-    R.map(function (feature) {
-      return feature.elements
-    })
+    R.map(feature => feature.elements)
   )(features)
 
-  var summary = Summary.calculateSummary(features)
-  // Replaces 'OK' and 'NOK' with 'Passed' and 'Failed'.
-  summary.status = summary.status === 'OK' ? 'passed' : 'failed'
+  let summary = Summary.calculateSummary(features)
+  let tags = mappingTags(features)
+  let tagsArray = createTagsArray(tags)
 
-  var tags = mappingTags(features)
-  var tagsArray = createTagsArray(tags)
-
-  var mustacheOptions = Object.assign({}, options, {
+  let mustacheOptions = Object.assign({}, options, {
     features: features,
     featuresJson: JSON.stringify(R.pluck('name', scenariosSummary)),
     stepsSummary: stepsSummary,
@@ -181,7 +167,7 @@ exports.createReport = function (options) {
  * @param number The number to round.
  * @returns {number} The rounded number. Always returns a float!
  */
-var round = function (decimals, number) {
+function round (decimals, number) {
   return Math.round(number * Math.pow(10, decimals)) / parseFloat(Math.pow(10, decimals))
 }
 
@@ -190,46 +176,56 @@ function getDataUri (file) {
   return new Buffer(bitmap).toString('base64')
 }
 
+function formatDurationInSeconds (duration) {
+  return round(2, duration / 1000000000) + ' s'
+}
+
+function formatDurationInMinutesAndSeconds (duration) {
+  return Math.trunc(duration / 60000000000) + ' m ' + round(2, (duration % 60000000000) / 1000000000) + ' s'
+}
+
+function isMinuteOrMore (duration) {
+  return duration && duration / 60000000000 >= 1
+}
+
+function isMinuteOrLess (duration) {
+  return duration && duration / 60000000000 < 1
+}
+
 function durationCounter (features) {
-  R.map(function (feature) {
-    var duration = R.compose(
-      R.reduce(function (accumulator, current) {
-        return accumulator + current
-      }, 0),
+  R.map(feature => {
+    let duration = R.compose(
+      R.reduce((accumulator, current) => accumulator + current, 0),
       R.flatten(),
-      R.map(function (step) {
-        return step.result.duration ? step.result.duration : 0
-      }),
+      R.map(step => step.result.duration ? step.result.duration : 0),
       R.flatten(),
-      R.map(function (element) {
-        return element.steps
-      })
+      R.map(element => element.steps)
     )(feature.elements)
 
-    if (duration && duration / 60000000000 >= 1) {
+    if (isMinuteOrMore(duration)) {
       // If the test ran for more than a minute, also display minutes.
-      feature.duration = Math.trunc(duration / 60000000000) + ' m ' + round(2, (duration % 60000000000) / 1000000000) + ' s'
-    } else if (duration && duration / 60000000000 < 1) {
+      feature.duration = formatDurationInMinutesAndSeconds(duration)
+    } else if (isMinuteOrLess(duration)) {
       // If the test ran for less than a minute, display only seconds.
-      feature.duration = round(2, duration / 1000000000) + ' s'
+      feature.duration = formatDurationInSeconds(duration)
     }
   })(features)
 }
 
 function createTagsArray (tags) {
   return (function (tags) {
-    var array = []
+    let array = []
 
-    for (var tag in tags) {
+    for (let tag in tags) {
       if (tags.hasOwnProperty(tag)) {
         // Converts the duration from nanoseconds to seconds and minutes (if any)
-        var duration = tags[tag].duration
-        if (duration && duration / 60000000000 >= 1) {
+        let duration = tags[tag].duration
+        if (isMinuteOrMore(duration)) {
           // If the test ran for more than a minute, also display minutes.
-          tags[tag].duration = Math.trunc(duration / 60000000000) + ' m ' + round(2, (duration % 60000000000) / 1000000000) + ' s'
-        } else if (duration && duration / 60000000000 < 1) {
+          tags[tag].duration = formatDurationInMinutesAndSeconds(duration)
+        } else if (isMinuteOrLess(duration)) {
           // If the test ran for less than a minute, display only seconds.
-          tags[tag].duration = round(2, duration / 1000000000) + ' s'
+          tags[tag].duration = formatDurationInSeconds(duration)
         }
         array.push(tags[tag])
       }
@@ -240,20 +236,20 @@ function createTagsArray (tags) {
 
 function stepDurationConverter (step) {
   // Converts the duration from nanoseconds to seconds and minutes (if any)
-  var duration = step.result.duration
-  if (duration && duration / 60000000000 >= 1) {
+  let duration = step.result.duration
+  if (isMinuteOrMore(duration)) {
     // If the test ran for more than a minute, also display minutes.
-    step.result.convertedDuration = Math.trunc(duration / 60000000000) + ' m ' + round(2, (duration % 60000000000) / 1000000000) + ' s'
-  } else if (duration && duration / 60000000000 < 1) {
+    step.result.convertedDuration = formatDurationInMinutesAndSeconds(duration)
+  } else if (isMinuteOrLess(duration)) {
     // If the test ran for less than a minute, display only seconds.
-    step.result.convertedDuration = round(2, duration / 1000000000) + ' s'
+    step.result.convertedDuration = formatDurationInSeconds(duration)
   }
 }
 
 function mappingTags (features) {
-  var tags = {}
-  features.map(function (feature) {
-    [].concat(feature.tags).map(function (tag) {
+  let tags = {}
+  features.map(feature => {
+    [].concat(feature.tags).map(tag => {
       if (!(tag in tags)) {
         tags[tag] = {
           name: tag,
@@ -273,13 +269,13 @@ function mappingTags (features) {
         }
       }
 
-      feature.elements.map(function (element) {
+      feature.elements.map(element => {
         if (element.type === 'scenario') {
           tags[tag].scenarios.all++
           tags[tag].scenarios[element.status]++
         }
 
-        element.steps.map(function (step) {
+        element.steps.map(step => {
           if (step.result.duration) {
             tags[tag].duration += step.result.duration
           }
@@ -348,13 +344,7 @@ function getScenarioStatus (scenario) {
 }
 
 function parseTags (feature) {
-  if (feature.tags !== undefined) {
-    feature.tags = feature.tags.map(function (tag) {
-      return tag.name
-    }).join(', ')
-  } else {
-    feature.tags = ''
-  }
+  feature.tags = (feature.tags || []).map(tag => tag.name).join(', ')
   return feature
 }
 
@@ -372,7 +362,7 @@ function processScenario (options) {
 
 function processScenarios (options) {
   return function (feature) {
-    var scenarios = (feature.elements || []).filter(isScenarioType)
+    const scenarios = (feature.elements || []).filter(isScenarioType)
     scenarios.forEach(processScenario(options))
     return feature
   }
@@ -380,10 +370,10 @@ function processScenarios (options) {
 
 function saveEmbeddedMetadata (destPath, element, steps) {
   steps = steps || []
-  steps.forEach(function (step) {
+  steps.forEach(step => {
     if (step.embeddings) {
-      var imgCount = 1
-      step.embeddings.forEach(function (embedding) {
+      let imgCount = 1
+      step.embeddings.forEach(embedding => {
         if (embedding.mime_type === 'image/png') {
           handleEmbeddingPng(embedding, element, destPath, imgCount)
           ++imgCount
@@ -398,11 +388,12 @@ function saveEmbeddedMetadata (destPath, element, steps) {
 }
 
 function handleEmbeddingPng (embedding, element, destPath, imgCount) {
-  var imageName = createFileName(element.name + '-' + element.line + '-' + imgCount) + '.png'
-  var fileName = path.join(destPath, imageName)
+  const imageName = createFileName(`${element.name}-${element.line}-${imgCount}`) + '.png'
+  const fileName = path.join(destPath, imageName)
   // Save imageName on element so we use it in HTML
   element.imageName = element.imageName || []
   element.imageName.push(imageName)
+
   writeImage(fileName, embedding.data)
 }
 
@@ -415,20 +406,16 @@ function handleEmbeddingPlainText (embedding, element) {
 }
 
 function handleEmbeddingBrowserLog (embedding, element) {
-  const logs = new Buffer(embedding.data, 'base64').toString('ascii').split('\n')
-  element.logs = logs
+  element.logs = new Buffer(embedding.data, 'base64').toString('ascii').split('\n')
 }
 
 function mustacheImageFormatter () {
   return function (text, render) {
-    var imgResult = ''
-    var src = render(text)
-    var imgList = src.split(',')
+    let imgResult = ''
+    let src = render(text)
+    let imgList = src.split(',')
     if (src.length > 0 && imgList.length > 0) {
-      // Loop through images
-      for (var i in imgList) {
-        imgResult += '<img src="' + imgList[i] + '" />'
-      }
+      imgResult = imgList.map(image => `<img src="${image}" />`).join('')
     }
     return imgResult
   }
@@ -443,27 +430,25 @@ function mustacheDurationFormatter () {
 function encodeScreenshot (options) {
   if (!options.screenshots) {
     return undefined
-  } else {
-    return fs.readdirSync(options.screenshots).map(function (file) {
-      if (file[0] === '.') {
-        return undefined
-      }
-
-      var name = file.split('.')
-      var extension = name.pop()
-      extension === 'svg' ? extension = 'svg+xml' : false
-      return {
-        name: name.join('.').replace(/\s/, '_'),
-        url: 'data:image/' + extension + ';base64,' + getDataUri(options.screenshots + '/' + file)
-      }
-    }).filter(function (image) {
-      return image
-    })
   }
+
+  return fs.readdirSync(options.screenshots).map(file => {
+    if (file[0] === '.') {
+      return undefined
+    }
+
+    let name = file.split('.')
+    let extension = name.pop()
+    extension === 'svg' ? extension = 'svg+xml' : false
+    return {
+      name: name.join('.').replace(/\s/, '_'),
+      url: 'data:image/' + extension + ';base64,' + getDataUri(options.screenshots + '/' + file)
+    }
+  }).filter(image => image) // why?
 }
 
 function encodeLogo (logoPath) {
-  var logoExtension = logoPath.split('.').pop()
-  var extension = logoExtension === 'svg' ? 'svg+xml' : logoExtension
+  const logoExtension = logoPath.split('.').pop()
+  const extension = logoExtension === 'svg' ? 'svg+xml' : logoExtension
   return 'data:image/' + extension + ';base64,' + getDataUri(logoPath)
 }

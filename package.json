@@ -1,6 +1,6 @@
 {
   "name": "cucumber-html-report",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Convert cucumber json reports to a pretty html report.",
   "homepage": "https://github.com/leinonen/cucumber-html-report",
   "author": {

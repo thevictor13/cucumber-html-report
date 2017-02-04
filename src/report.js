@@ -1,5 +1,6 @@
 'use strict'
 
+const R = require('ramda')
 const fs = require('fs')
 const path = require('path')
 const atob = require('atob')
@@ -7,7 +8,7 @@ const Mustache = require('mustache')
 const Directory = require('./directory')
 const Summary = require('./summary')
 const Template = require('./template')
-const R = require('ramda')
+const Duration = require('./duration')
 
 if (!Object.assign) {
   Object.assign = require('object-assign')
@@ -161,37 +162,6 @@ exports.createReport = function (options) {
   return Promise.resolve(mustacheOptions)
 }
 
-/**
- * Rouds a number to the supplied decimals. Only makes sense for floats!
- * @param decimals The maximum number of decimals expected.
- * @param number The number to round.
- * @returns {number} The rounded number. Always returns a float!
- */
-function round (decimals, number) {
-  return Math.round(number * Math.pow(10, decimals)) / parseFloat(Math.pow(10, decimals))
-}
-
-function getDataUri (file) {
-  var bitmap = fs.readFileSync(file)
-  return new Buffer(bitmap).toString('base64')
-}
-
-function formatDurationInSeconds (duration) {
-  return round(2, duration / 1000000000) + ' s'
-}
-
-function formatDurationInMinutesAndSeconds (duration) {
-  return Math.trunc(duration / 60000000000) + ' m ' + round(2, (duration % 60000000000) / 1000000000) + ' s'
-}
-
-function isMinuteOrMore (duration) {
-  return duration && duration / 60000000000 >= 1
-}
-
-function isMinuteOrLess (duration) {
-  return duration && duration / 60000000000 < 1
-}
-
 function durationCounter (features) {
   R.map(feature => {
     let duration = R.compose(
@@ -202,12 +172,12 @@ function durationCounter (features) {
       R.map(element => element.steps)
     )(feature.elements)
 
-    if (isMinuteOrMore(duration)) {
+    if (Duration.isMinuteOrMore(duration)) {
       // If the test ran for more than a minute, also display minutes.
-      feature.duration = formatDurationInMinutesAndSeconds(duration)
-    } else if (isMinuteOrLess(duration)) {
+      feature.duration = Duration.formatDurationInMinutesAndSeconds(duration)
+    } else if (Duration.isMinuteOrLess(duration)) {
       // If the test ran for less than a minute, display only seconds.
-      feature.duration = formatDurationInSeconds(duration)
+      feature.duration = Duration.formatDurationInSeconds(duration)
     }
   })(features)
 }
@@ -220,12 +190,12 @@ function createTagsArray (tags) {
       if (tags.hasOwnProperty(tag)) {
         // Converts the duration from nanoseconds to seconds and minutes (if any)
         let duration = tags[tag].duration
-        if (isMinuteOrMore(duration)) {
+        if (Duration.isMinuteOrMore(duration)) {
           // If the test ran for more than a minute, also display minutes.
-          tags[tag].duration = formatDurationInMinutesAndSeconds(duration)
-        } else if (isMinuteOrLess(duration)) {
+          tags[tag].duration = Duration.formatDurationInMinutesAndSeconds(duration)
+        } else if (Duration.isMinuteOrLess(duration)) {
           // If the test ran for less than a minute, display only seconds.
-          tags[tag].duration = formatDurationInSeconds(duration)
+          tags[tag].duration = Duration.formatDurationInSeconds(duration)
         }
         array.push(tags[tag])
       }
@@ -237,12 +207,12 @@ function createTagsArray (tags) {
 function stepDurationConverter (step) {
   // Converts the duration from nanoseconds to seconds and minutes (if any)
   let duration = step.result.duration
-  if (isMinuteOrMore(duration)) {
+  if (Duration.isMinuteOrMore(duration)) {
     // If the test ran for more than a minute, also display minutes.
-    step.result.convertedDuration = formatDurationInMinutesAndSeconds(duration)
-  } else if (isMinuteOrLess(duration)) {
+    step.result.convertedDuration = Duration.formatDurationInMinutesAndSeconds(duration)
+  } else if (Duration.isMinuteOrLess(duration)) {
     // If the test ran for less than a minute, display only seconds.
-    step.result.convertedDuration = formatDurationInSeconds(duration)
+    step.result.convertedDuration = Duration.formatDurationInSeconds(duration)
   }
 }
 
@@ -401,7 +371,7 @@ function handleEmbeddingPlainText (embedding, element) {
   // Save plain text on element so we use it in HTML
   element.plainTextMetadata = element.plainTextMetadata || []
 
-  var decodedText = atob(embedding.data)
+  const decodedText = atob(embedding.data)
   element.plainTextMetadata.push(decodedText)
 }
 
@@ -425,6 +395,11 @@ function mustacheDurationFormatter () {
   return function (text, render) {
     return render(text)
   }
+}
+
+function getDataUri (file) {
+  var bitmap = fs.readFileSync(file)
+  return new Buffer(bitmap).toString('base64')
 }
 
 function encodeScreenshot (options) {

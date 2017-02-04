@@ -1,6 +1,9 @@
 'use strict'
 
 const Report = require('./report')
+const Directory = require('./directory')
+const fs = require('fs')
+const sinon = require('sinon')
 const expect = require('chai').expect
 const path = require('path')
 
@@ -57,6 +60,43 @@ describe('Report', () => {
       delete options.logo
       return Report.validate(options).then(opts => {
         expect(opts.logo).to.equal(path.join(__dirname, '..', 'logos', 'cucumber-logo.svg'))
+      })
+    })
+  })
+
+  describe('Create directory', () => {
+    let options
+    let dirSpy
+    let fsSpy
+    beforeEach(() => {
+      options = {
+        source: path.join(__dirname, '..', 'testdata', 'feature_passing.json'),
+        dest: './reports',
+        name: 'index.html',
+        title: 'Cucumber Report',
+        component: 'My Component',
+        logo: './logos/cucumber-logo.svg',
+        screenshots: './screenshots'
+      }
+      dirSpy = sinon.stub(Directory, 'mkdirpSync')
+    })
+
+    afterEach(() => {
+      dirSpy.restore()
+      fsSpy.restore()
+    })
+
+    it('should not create directory if it already exists', () => {
+      fsSpy = sinon.stub(fs, 'existsSync').returns(true)
+      Report.createDirectory(options).then(opts => {
+        expect(dirSpy.callCount).to.equal(0)
+      })
+    })
+
+    it('should create directory if it does not already exists', () => {
+      fsSpy = sinon.stub(fs, 'existsSync').returns(false)
+      Report.createDirectory(options).then(opts => {
+        expect(dirSpy.callCount).to.equal(1)
       })
     })
   })

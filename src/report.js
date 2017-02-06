@@ -24,8 +24,8 @@ exports.validate = function (options) {
       reject('Template file ' + options.template + ' does not exist! Aborting')
     }
 
-    if (typeof options.name === 'undefined') {
-      reject('Template name ' + options.name + ' does not valid! Aborting')
+    if (!options.hasOwnProperty('name') || typeof options.name === 'undefined') {
+      options.name = 'index.html'
     }
 
     if (!options.hasOwnProperty('dest') || typeof options.dest === 'undefined') {

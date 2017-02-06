@@ -35,10 +35,10 @@ describe('Report', () => {
       })
     })
 
-    it('should validate valid name', () => {
+    it('should default to index.html if name is not provided', () => {
       options.name = undefined
-      return Report.validate(options).catch(error => {
-        expect(error).to.equal('Template name undefined does not valid! Aborting')
+      return Report.validate(options).then(opts => {
+        expect(opts.name).to.equal('index.html')
       })
     })
 

@@ -77,8 +77,9 @@ exports.createReport = function (options) {
   let features = parseFeatures(options, loadCucumberJson(options.source))
   let stepsSummary = []
   let scenarios = []
+  const isCucumber2 = features.every(feature => feature.elements.every(scenario => scenario.type === undefined))
 
-  durationCounter(features)
+  durationCounter(features, isCucumber2)
 
   // Extracts steps from the features.
   features.map((feature, index) => {
@@ -86,7 +87,7 @@ exports.createReport = function (options) {
     let steps = R.compose(
       R.flatten(),
       R.map(scenario => scenario.steps),
-      R.filter(element => element.type === 'scenario')
+      R.filter(isScenarioType)
     )(feature.elements)
 
     stepsSummary.push({
@@ -112,7 +113,7 @@ exports.createReport = function (options) {
           stepsSummary[index].failed++
           break
       }
-      stepDurationConverter(step)
+      stepDurationConverter(step, isCucumber2)
     })
 
     scenarios.push({
@@ -128,19 +129,19 @@ exports.createReport = function (options) {
       }),
       R.flatten(),
       R.map(scenario => scenario.status),
-      R.filter(element => element.type === 'scenario')
+      R.filter(isScenarioType)
     )(feature.elements)
   })
 
   let scenariosSummary = R.compose(
-    R.filter(element => element.type === 'scenario'),
+    R.filter(isScenarioType),
     R.flatten(),
     R.map(feature => feature.elements)
   )(features)
 
   let summary = Summary.calculateSummary(features)
   let tags = mappingTags(features)
-  let tagsArray = createTagsArray(tags)
+  let tagsArray = createTagsArray(tags, isCucumber2)
 
   let mustacheOptions = Object.assign({}, options, {
     features: features,
@@ -162,7 +163,7 @@ exports.createReport = function (options) {
   return Promise.resolve(mustacheOptions)
 }
 
-function durationCounter (features) {
+function durationCounter (features, isCucumber2) {
   R.map(feature => {
     let duration = R.compose(
       R.reduce((accumulator, current) => accumulator + current, 0),
@@ -172,17 +173,17 @@ function durationCounter (features) {
       R.map(element => element.steps)
     )(feature.elements)
 
-    if (Duration.isMinuteOrMore(duration)) {
+    if (Duration.isMinuteOrMore(duration, isCucumber2)) {
       // If the test ran for more than a minute, also display minutes.
-      feature.duration = Duration.formatDurationInMinutesAndSeconds(duration)
-    } else if (Duration.isMinuteOrLess(duration)) {
+      feature.duration = Duration.formatDurationInMinutesAndSeconds(duration, isCucumber2)
+    } else if (Duration.isMinuteOrLess(duration, isCucumber2)) {
       // If the test ran for less than a minute, display only seconds.
-      feature.duration = Duration.formatDurationInSeconds(duration)
+      feature.duration = Duration.formatDurationInSeconds(duration, isCucumber2)
     }
   })(features)
 }
 
-function createTagsArray (tags) {
+function createTagsArray (tags, isCucumber2) {
   return (function (tags) {
     let array = []
 
@@ -190,12 +191,12 @@ function createTagsArray (tags) {
       if (tags.hasOwnProperty(tag)) {
         // Converts the duration from nanoseconds to seconds and minutes (if any)
         let duration = tags[tag].duration
-        if (Duration.isMinuteOrMore(duration)) {
+        if (Duration.isMinuteOrMore(duration, isCucumber2)) {
           // If the test ran for more than a minute, also display minutes.
-          tags[tag].duration = Duration.formatDurationInMinutesAndSeconds(duration)
-        } else if (Duration.isMinuteOrLess(duration)) {
+          tags[tag].duration = Duration.formatDurationInMinutesAndSeconds(duration, isCucumber2)
+        } else if (Duration.isMinuteOrLess(duration, isCucumber2)) {
           // If the test ran for less than a minute, display only seconds.
-          tags[tag].duration = Duration.formatDurationInSeconds(duration)
+          tags[tag].duration = Duration.formatDurationInSeconds(duration, isCucumber2)
         }
         array.push(tags[tag])
       }
@@ -204,15 +205,15 @@ function createTagsArray (tags) {
   })(tags)
 }
 
-function stepDurationConverter (step) {
+function stepDurationConverter (step, isCucumber2) {
   // Converts the duration from nanoseconds to seconds and minutes (if any)
   let duration = step.result.duration
-  if (Duration.isMinuteOrMore(duration)) {
+  if (Duration.isMinuteOrMore(duration, isCucumber2)) {
     // If the test ran for more than a minute, also display minutes.
-    step.result.convertedDuration = Duration.formatDurationInMinutesAndSeconds(duration)
-  } else if (Duration.isMinuteOrLess(duration)) {
+    step.result.convertedDuration = Duration.formatDurationInMinutesAndSeconds(duration, isCucumber2)
+  } else if (Duration.isMinuteOrLess(duration, isCucumber2)) {
     // If the test ran for less than a minute, display only seconds.
-    step.result.convertedDuration = Duration.formatDurationInSeconds(duration)
+    step.result.convertedDuration = Duration.formatDurationInSeconds(duration, isCucumber2)
   }
 }
 
@@ -240,7 +241,7 @@ function mappingTags (features) {
       }
 
       feature.elements.map(element => {
-        if (element.type === 'scenario') {
+        if (isScenarioType(element)) {
           tags[tag].scenarios.all++
           tags[tag].scenarios[element.status]++
         }
@@ -319,7 +320,7 @@ function parseTags (feature) {
 }
 
 function isScenarioType (scenario) {
-  return scenario.type === 'scenario'
+  return scenario.type === 'scenario' || scenario.keyword === 'Scenario'
 }
 
 function processScenario (options) {

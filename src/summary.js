@@ -7,7 +7,7 @@ const featurePassed = feature => feature.status === 'passed'
 const stepPassed = step => step.result.status.toLocaleLowerCase() === 'passed'
 const stepFailed = step => step.result.status.toLocaleLowerCase() === 'failed'
 const stepSkipped = step => step.result.status.toLocaleLowerCase() === 'skipped'
-const isScenarioType = scenario => scenario.type === 'scenario'
+const isScenarioType = scenario => scenario.type === 'scenario' || scenario.keyword === 'Scenario'
 const getStatusText = success => success ? 'passed' : 'failed'
 const getValidSteps = scenario => (scenario.steps || []).filter(validStep)
 const getNumStepsForScenario = scenario => getValidSteps(scenario).length

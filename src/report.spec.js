@@ -65,6 +65,12 @@ reportNames.forEach(reportName =>
           expect(opts.logo).to.equal(path.join(__dirname, '..', 'logos', 'cucumber-logo.svg'))
         })
       })
+
+      it('should set maxScreenshots if not specified', () => {
+        return Report.validate(options).then(opts => {
+          expect(opts.maxScreenshots).to.equal(1000)
+        })
+      })
     })
 
     describe('Create directory', () => {

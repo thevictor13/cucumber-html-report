@@ -40,6 +40,10 @@ exports.validate = function (options) {
       options.screenshots = false
     }
 
+    if (!options.hasOwnProperty('maxScreenshots')) {
+      options.maxScreenshots = 1000
+    }
+
     resolve(options)
   })
 }
@@ -337,7 +341,7 @@ function isScenarioType (scenario) {
 function processScenario (options) {
   return function (scenario) {
     scenario.status = getScenarioStatus(scenario)
-    saveEmbeddedMetadata(options.dest, scenario, scenario.steps)
+    saveEmbeddedMetadata(options.dest, scenario, scenario.steps, options.maxScreenshots)
     scenario.steps = scenario.steps.filter(isValidStep)
   }
 }
@@ -350,14 +354,16 @@ function processScenarios (options) {
   }
 }
 
-function saveEmbeddedMetadata (destPath, element, steps) {
+function saveEmbeddedMetadata (destPath, element, steps, maxScreenshots) {
   steps = steps || []
   steps.forEach(step => {
     if (step.embeddings) {
       let imgCount = 1
       step.embeddings.forEach(embedding => {
         if (embedding.mime_type === 'image/png') {
-          handleEmbeddingPng(embedding, element, destPath, imgCount)
+          if (imgCount <= maxScreenshots) {
+            handleEmbeddingPng(embedding, element, destPath, imgCount)
+          }
           ++imgCount
         } else if (embedding.mime_type === 'text/plain') {
           handleEmbeddingPlainText(embedding, element)

@@ -58,14 +58,11 @@ exports.createDirectory = function (options) {
 }
 
 exports.writeReport = function (mustacheOptions) {
-  return new Promise((resolve, reject) => {
-    const template = Template.load(mustacheOptions.template || Template.defaultTemplate)
-    const partials = mustacheOptions.template ? {} : Template.getTemplatePartials()
-    const html = Mustache.render(template, mustacheOptions, partials)
+  const template = Template.load(mustacheOptions.template || Template.defaultTemplate)
+  const partials = mustacheOptions.template ? {} : Template.getTemplatePartials()
+  const html = Mustache.render(template, mustacheOptions, partials)
 
-    writeHTML(mustacheOptions.dest, mustacheOptions.name, html)
-    resolve('Report created successfully!')
-  })
+  return writeHTML(mustacheOptions.dest, mustacheOptions.name, html)
 }
 
 /**
@@ -297,12 +294,26 @@ function createFileName (name) {
 }
 
 function writeHTML (targetDirectory, reportName, html) {
-  fs.writeFileSync(path.join(targetDirectory, reportName || 'index.html'), html)
+  return new Promise((resolve, reject) => {
+    fs.writeFile(path.join(targetDirectory, reportName || 'index.html'), html, (error) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve('Report  created successfully!')
+      }
+    })
+  })
 }
 
 function writeImage (fileName, data) {
-  fs.writeFileSync(fileName, new Buffer(data, 'base64'))
-  console.log('Wrote %s', fileName)
+  // fs.writeFileSync(fileName, new Buffer(data, 'base64'))
+  fs.writeFile(fileName, new Buffer(data, 'base64'), (error) => {
+    if (error) {
+      console.log('Error writing', fileName, error)
+    } else {
+      console.log('Wrote', fileName)
+    }
+  })
 }
 
 function getFeatureStatus (feature) {

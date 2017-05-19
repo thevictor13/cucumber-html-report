@@ -265,7 +265,7 @@ function mappingTags (features) {
 }
 
 function isValidStep (step) {
-  return step.name !== undefined
+  return step.hidden === undefined || step.result.status.toLocaleLowerCase() === 'failed'
 }
 
 function loadCucumberJson (fileName) {

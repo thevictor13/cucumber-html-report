@@ -2,7 +2,7 @@
 
 const add = (a, b) => a + b
 const sum = (arr) => arr.reduce(add, 0)
-const validStep = step => step.hidden === undefined
+const validStep = step => step.hidden === undefined || step.result.status.toLocaleLowerCase() === 'failed'
 const featurePassed = feature => feature.status === 'passed'
 const stepPassed = step => step.result.status.toLocaleLowerCase() === 'passed'
 const stepFailed = step => step.result.status.toLocaleLowerCase() === 'failed'

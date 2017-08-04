@@ -71,6 +71,12 @@ reportNames.forEach(reportName =>
           expect(opts.maxScreenshots).to.equal(1000)
         })
       })
+
+      it('should set sortReport if not specified', () => {
+        return Report.validate(options).then(opts => {
+          expect(opts.sortReport).to.equal(true)
+        })
+      })
     })
 
     describe('Create directory', () => {

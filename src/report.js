@@ -44,6 +44,10 @@ exports.validate = function (options) {
       options.maxScreenshots = 1000
     }
 
+    if (!options.hasOwnProperty('sortReport') || typeof options.sortReport === 'undefined') {
+      options.sortReport = true
+    }
+
     resolve(options)
   })
 }
@@ -272,15 +276,24 @@ function loadCucumberJson (fileName) {
   return JSON.parse(fs.readFileSync(fileName, 'utf-8').toString())
 }
 
-function sortByStatusAndName (list) {
-  return R.sortWith([
+function sortByStatusAndName (list, options) {
+  var sortArray = [
     R.ascend(R.prop('status')),
     R.ascend(R.prop('name'))
-  ], list)
+  ]
+
+  /* If the option sortReport is false leave the report sorted by execution chronology */
+  if (!options.sortReport) {
+    sortArray = [
+      R.ascend(R.prop('line'))
+    ]
+  }
+
+  return R.sortWith(sortArray, list)
 }
 
 function sortScenariosForFeature (feature) {
-  feature.elements = sortByStatusAndName(feature.elements)
+  feature.elements = sortByStatusAndName(feature.elements, this)
   return feature
 }
 
@@ -289,7 +302,7 @@ function parseFeatures (options, features) {
     .map(getFeatureStatus)
     .map(parseTags)
     .map(processScenarios(options))
-    .map(sortScenariosForFeature))
+    .map(sortScenariosForFeature, options), options)
 }
 
 function createFileName (name) {

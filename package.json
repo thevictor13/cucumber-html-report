@@ -31,6 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "atob": "^2.0.3",
+    "moment": "^2.19.0",
     "mustache": "^2.3.0",
     "object-assign": "^4.1.0",
     "ramda": "^0.23.0"

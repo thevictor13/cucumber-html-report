@@ -4,6 +4,7 @@ const R = require('ramda')
 const fs = require('fs')
 const path = require('path')
 const atob = require('atob')
+const moment = require('moment')
 const Mustache = require('mustache')
 const Directory = require('./directory')
 const Summary = require('./summary')
@@ -47,6 +48,8 @@ exports.validate = function (options) {
     if (!options.hasOwnProperty('sortReport') || typeof options.sortReport === 'undefined') {
       options.sortReport = true
     }
+
+    options.timestamp = moment().format(options.dateformat || 'YYYY-MM-DD hh:mm:ss')
 
     resolve(options)
   })

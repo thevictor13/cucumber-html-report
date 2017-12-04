@@ -376,7 +376,7 @@ function saveEmbeddedMetadata (destPath, element, steps, maxScreenshots) {
     if (step.embeddings) {
       let imgCount = 1
       step.embeddings.forEach(embedding => {
-        if (embedding.mime_type === 'image/png') {
+        if (embedding.mime_type === 'image/png' || (embedding.media && embedding.media.type === 'image/png')) {
           if (imgCount <= maxScreenshots) {
             handleEmbeddingPng(embedding, element, destPath, imgCount)
           }

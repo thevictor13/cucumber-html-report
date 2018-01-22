@@ -410,7 +410,7 @@ function handleEmbeddingPlainText (embedding, element) {
 }
 
 function handleEmbeddingBrowserLog (embedding, element) {
-  element.logs = new Buffer(embedding.data, 'base64').toString('ascii').split('\n')
+  element.logs = embedding.data.split('\n')
 }
 
 function mustacheImageFormatter () {

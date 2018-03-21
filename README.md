@@ -20,6 +20,7 @@ report.create({
   dest:         './reports',                   // target directory (will create if not exists)
   name:         'report.html',                 // report file name (will be index.html if not exists)
   template:     'mytemplate.html',             // your custom mustache template (uses default if not specified)
+  partialsDir:  './partials',                  // your custom mustache partials directory (uses default if no custom template is specified, or empty when there is template but no partials)
   title:        'Cucumber Report',             // Title for default template. (default is Cucumber Report)
   component:    'My Component',                // Subtitle for default template. (default is empty)
   logo:         './logos/cucumber-logo.svg',   // Path to the displayed logo.

@@ -70,7 +70,7 @@ exports.createDirectory = function (options) {
 
 exports.writeReport = function (mustacheOptions) {
   const template = Template.load(mustacheOptions.template || Template.defaultTemplate)
-  const partials = mustacheOptions.template ? {} : Template.getTemplatePartials()
+  const partials = mustacheOptions.template ? (mustacheOptions.partialsDir ? Template.getTemplatePartials(mustacheOptions.partialsDir) : {}) : Template.getTemplatePartials(path.join(__dirname, '..', 'templates', 'partials'));
   const html = Mustache.render(template, mustacheOptions, partials)
 
   return writeHTML(mustacheOptions.dest, mustacheOptions.name, html)

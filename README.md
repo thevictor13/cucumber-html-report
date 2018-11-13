@@ -1,7 +1,7 @@
 ![alt text](https://travis-ci.org/leinonen/cucumber-html-report.svg?branch=master "Build status")
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
 
-# cucumber-html-report
+# cucumber-html-report (No longer maintained)
 
 Create pretty HTML reports from cucumber json report files. Uses mustache templates to transform json to HTML.
 Also writes embeddings (base64 encoded PNG images) to disk and includes them in the HTML, 

@@ -17,9 +17,9 @@
       }
     }
 
-    var failed = document.getElementsByClassName("failed");
+    var failed = document.getElementsByClassName("detailed-failed");
     for (var i = 0; i < failed.length; i += 1) {
-      if (failed[i].className === "failed" && !failed[i].classList.contains("hidden")) {
+      if (failed[i].className === "detailed-failed" && !failed[i].classList.contains("hidden")) {
         failed[i].addEventListener("click", (function(i) {
           return function() {
             if (failed[i].nextElementSibling.classList.contains("hidden")) {
